@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.FullArticleActivity"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/fullArticleImageView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/tesla"
+        android:scaleType="centerCrop"
+        />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@drawable/rounded_linear_layout"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/fullArticleImageView">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/arrow_up" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fullArticleTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="Title of an test article"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:textSize="36sp"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/black"/>
+
+    <!--<TextView
+        android:id="@+id/fullArticleDescriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="“A network state is a social network with a moral innovation, a sense of national consciousness, a recognized founder, a capacity for collective action, an in-person level… "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fullArticleTitleTextView"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_regular"/>-->
+
+    <!--<TextView
+        android:id="@+id/fullArticleAuthorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Emma Nolan"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fullArticleDescriptionTextView" />
+
+    <TextView
+        android:id="@+id/fullArticleDot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" · "
+        app:layout_constraintBottom_toBottomOf="@+id/fullArticleAuthorTextView"
+        app:layout_constraintStart_toEndOf="@+id/fullArticleAuthorTextView"
+        app:layout_constraintTop_toTopOf="@+id/fullArticleAuthorTextView" />
+
+    <TextView
+        android:id="@+id/fullArticleDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="2022-07-04"
+        app:layout_constraintBottom_toBottomOf="@+id/fullArticleDot"
+        app:layout_constraintStart_toEndOf="@+id/fullArticleDot"
+        app:layout_constraintTop_toTopOf="@+id/fullArticleDot" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
