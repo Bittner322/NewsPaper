@@ -1,9 +1,10 @@
 package com.example.newspaper.data.database
 
 import android.content.Context
-import androidx.room.*
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
 @Database(entities = [Article::class, ArticleHistory::class], version = 2, exportSchema = false)
 @TypeConverters(ArticleConverter::class)

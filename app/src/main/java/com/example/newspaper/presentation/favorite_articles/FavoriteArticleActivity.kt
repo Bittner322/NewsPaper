@@ -1,21 +1,19 @@
 package com.example.newspaper.presentation.favorite_articles
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.newspaper.R
+import com.example.newspaper.data.database.Article
 import com.example.newspaper.databinding.ActivityFavoriteArticleBinding
-import com.example.newspaper.databinding.FragmentNewsBinding
 import com.example.newspaper.presentation.full_article.FullArticleActivity
-import com.google.gson.Gson
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class FavoriteArticleActivity : AppCompatActivity() {
 
-    private val favoriteArticleViewModel: FavoriteArticleViewModel by viewModels()
+    private val viewModel: FavoriteArticleViewModel by viewModels()
 
     private var _binding: ActivityFavoriteArticleBinding? = null
     private val binding: ActivityFavoriteArticleBinding
@@ -29,12 +27,15 @@ class FavoriteArticleActivity : AppCompatActivity() {
 
         setContentView(view)
 
-        val adapter = FavoriteArticlesAdapter()
+        val adapter = FavoriteArticlesAdapter(
+            onToggleChecked = ::onToggleCheckClick,
+            onToggleNonChecked = ::onToggleNonCheckClick,
+        )
 
         binding.favoriteArticlesRecyclerView.adapter = adapter
 
         lifecycleScope.launchWhenStarted {
-            favoriteArticleViewModel.favoriteArticles
+            viewModel.favoriteArticles
                 .onEach {
                     adapter.setData(it)
                 }
@@ -46,6 +47,14 @@ class FavoriteArticleActivity : AppCompatActivity() {
             toFullArticleIntent.putExtra("articleId", it.articleId)
             startActivity(toFullArticleIntent)
         }
+    }
+
+    private fun onToggleCheckClick(article: Article) {
+        viewModel.setArticleFavorite(article)
+    }
+
+    private fun onToggleNonCheckClick(article: Article) {
+        viewModel.setArticleNonFavorite(article)
     }
 
     override fun onDestroy() {

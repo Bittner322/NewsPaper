@@ -3,24 +3,19 @@ package com.example.newspaper.presentation.full_article
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.bumptech.glide.Glide
-import com.example.newspaper.MainApplication
+import com.example.newspaper.MyApplication
 import com.example.newspaper.R
-import com.example.newspaper.data.database.Article
 import com.example.newspaper.data.database.ArticleDatabase
-import com.example.newspaper.data.repositories.NewsRepository
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class FullArticleViewModel(
     private val articleId: Int
 ): ViewModel() {
 
-    private val database = ArticleDatabase.getInstance(MainApplication.applicationContext())
+    private val database = ArticleDatabase.getInstance(MyApplication.applicationContext())
 
     val titleStateFlow = MutableStateFlow("")
     val authorStateFlow = MutableStateFlow("")

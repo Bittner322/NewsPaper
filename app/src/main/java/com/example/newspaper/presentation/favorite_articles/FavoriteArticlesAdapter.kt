@@ -14,19 +14,30 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FavoriteArticlesAdapter: RecyclerView.Adapter<FavoriteArticlesAdapter.ViewHolder>() {
+class FavoriteArticlesAdapter(
+    private val onToggleChecked: (Article) -> Unit,
+    private val onToggleNonChecked: (Article) -> Unit,
+): RecyclerView.Adapter<FavoriteArticlesAdapter.ViewHolder>() {
 
     var onItemClick: ((Article) -> Unit)? = null
     private val data = mutableListOf<Article>()
 
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(
+        itemView: View,
+        private val onToggleChecked: (Article) -> Unit,
+        private val onToggleNonChecked: (Article) -> Unit,
+    ): RecyclerView.ViewHolder(itemView) {
 
         private val titleTextView : TextView = itemView.findViewById(R.id.titleTextView)
         private val authorTextView: TextView = itemView.findViewById(R.id.authorTextView)
         private val contentTextView: TextView = itemView.findViewById(R.id.contentTextView)
         private val favoriteToggle: ToggleButton = itemView.findViewById(R.id.favoriteToggleButton)
+        private var item: Article? = null
 
         fun setDataItems(item: Article) {
+
+            this.item = item
+
             titleTextView.text = item.title
 
             if(item.source.name != null)
@@ -35,6 +46,8 @@ class FavoriteArticlesAdapter: RecyclerView.Adapter<FavoriteArticlesAdapter.View
                 authorTextView.text = "Unknown resource"
 
             contentTextView.text = item.description
+
+            favoriteToggle.isChecked = item.isFavorite
         }
 
         init {
@@ -42,20 +55,13 @@ class FavoriteArticlesAdapter: RecyclerView.Adapter<FavoriteArticlesAdapter.View
                 onItemClick?.invoke(data[adapterPosition])
             }
 
-            favoriteToggle.isChecked = true
-            favoriteToggle.setOnCheckedChangeListener { _, checked ->
 
-                val db = ArticleDatabase.getInstance(itemView.context)
-
-                if(!checked) {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        db.articleDao().delete(data[adapterPosition])
-                    }
+            favoriteToggle.setOnCheckedChangeListener { _, isChecked ->
+                if(isChecked) {
+                    item?.let { onToggleChecked(it) }
                 }
                 else {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        db.articleDao().add(data[adapterPosition])
-                    }
+                    item?.let { onToggleNonChecked(it) }
                 }
             }
         }
@@ -70,7 +76,7 @@ class FavoriteArticlesAdapter: RecyclerView.Adapter<FavoriteArticlesAdapter.View
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
-        return ViewHolder(itemView)
+        return ViewHolder(itemView, onToggleChecked, onToggleNonChecked)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

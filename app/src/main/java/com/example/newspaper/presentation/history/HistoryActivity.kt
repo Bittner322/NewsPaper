@@ -1,14 +1,12 @@
 package com.example.newspaper.presentation.history
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.newspaper.R
 import com.example.newspaper.data.database.Article
 import com.example.newspaper.data.database.ArticleDatabase
-import com.example.newspaper.databinding.ActivityFullArticleBinding
 import com.example.newspaper.databinding.ActivityHistoryBinding
 import com.example.newspaper.presentation.full_article.FullArticleActivity
 import kotlinx.coroutines.CoroutineScope
@@ -24,7 +22,7 @@ class HistoryActivity : AppCompatActivity() {
     private val binding: ActivityHistoryBinding
         get() = _binding!!
 
-    private val historyViewModel: HistoryViewModel by viewModels()
+    private val viewModel: HistoryViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,19 +33,12 @@ class HistoryActivity : AppCompatActivity() {
         val adapter = HistoryRecyclerAdapter(onItemClick = ::onHistoryClick)
         binding.historyRecyclerView.adapter = adapter
 
-        val articleHistoryDatabase = ArticleDatabase.getInstance(this)
-
         binding.clearHistoryButton.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                articleHistoryDatabase.historyDao().clearHistory()
-                withContext(Dispatchers.Main) {
-                    adapter.setData(emptyList())
-                }
-            }
+            viewModel.onClearHistoryClick()
         }
 
         lifecycleScope.launchWhenStarted {
-            historyViewModel.historyArticles
+            viewModel.historyArticles
                 .onEach {
                     adapter.setData(it)
                 }

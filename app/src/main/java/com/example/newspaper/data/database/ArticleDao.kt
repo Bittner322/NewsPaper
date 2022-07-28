@@ -1,7 +1,6 @@
 package com.example.newspaper.data.database
 
 import androidx.room.*
-import com.example.newspaper.data.network.NewsResponse
 
 @Dao
 interface ArticleDao {

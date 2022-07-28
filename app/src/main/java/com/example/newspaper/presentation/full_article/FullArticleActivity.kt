@@ -1,16 +1,13 @@
 package com.example.newspaper.presentation.full_article
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.example.newspaper.R
 import com.example.newspaper.databinding.ActivityFullArticleBinding
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 
 class FullArticleActivity : AppCompatActivity() {

@@ -1,22 +1,16 @@
 package com.example.newspaper.presentation.main_activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import com.example.newspaper.R
 import com.example.newspaper.databinding.ActivityMainBinding
 import com.example.newspaper.presentation.news.NewsFragment
 import com.example.newspaper.presentation.profile.ProfileFragment
-import com.example.newspaper.presentation.profile.ProfileViewModel
 
 class MainActivity : AppCompatActivity() {
-
-    private val mainActivityViewModel: MainActivityViewModel by viewModels()
 
     private var _binding: ActivityMainBinding? = null
     private val binding :ActivityMainBinding

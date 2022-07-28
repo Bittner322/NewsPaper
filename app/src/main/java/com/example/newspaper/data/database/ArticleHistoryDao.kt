@@ -14,9 +14,6 @@ interface ArticleHistoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(articles: List<ArticleHistory>)
 
-    @Query("SELECT * FROM Articles")
-    fun getAllHistoryArticles(): List<ArticleHistory>
-
     @Query("DELETE FROM ArticleHistory")
-    fun clearHistory()
+    suspend fun clearHistory()
 }

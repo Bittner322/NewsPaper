@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.onEach
 
 class NewsFragment : Fragment() {
 
-    private val newsViewModel: NewsViewModel by viewModels()
+    private val viewModel: NewsViewModel by viewModels()
 
     private var _binding: FragmentNewsBinding? = null
     private val binding: FragmentNewsBinding
@@ -30,12 +30,16 @@ class NewsFragment : Fragment() {
         _binding = FragmentNewsBinding.inflate(layoutInflater)
         val view = binding.root
 
-        val adapter = NewsRecyclerAdapter(onItemClick = ::onNewsClick)
+        val adapter = NewsRecyclerAdapter(
+            onItemClick = ::onNewsClick,
+            onToggleChecked = ::onToggleCheckClick,
+            onToggleNonChecked = ::onToggleNonCheckClick,
+        )
 
         binding.newsRecyclerView.adapter = adapter
 
         lifecycleScope.launchWhenStarted {
-            newsViewModel.news
+            viewModel.news
                 .onEach {
                     adapter.setData(it)
                 }
@@ -45,17 +49,20 @@ class NewsFragment : Fragment() {
         return view
     }
 
+    private fun onToggleCheckClick(article: Article) {
+        viewModel.setArticleFavorite(article)
+    }
+
+    private fun onToggleNonCheckClick(article: Article) {
+        viewModel.setArticleNonFavorite(article)
+    }
+
     private fun onNewsClick(article: Article) {
+
+        viewModel.addArticleToHistory(article)
+
         val toFullArticleActivityIntent = Intent(requireActivity(), FullArticleActivity::class.java)
         toFullArticleActivityIntent.putExtra("articleId", article.articleId)
         startActivity(toFullArticleActivityIntent)
     }
-
-    override fun onDestroyView() {
-
-        _binding = null
-
-        super.onDestroyView()
-    }
-
 }
