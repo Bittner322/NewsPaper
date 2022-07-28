@@ -3,6 +3,8 @@
     <string name="api_key">a5d65121640a45d99c48715b67299a36</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string name="lorem">Sdaopgfnwsogbe9wubty9243bug9-abqgq-p4u938gbpieau4bgpaiubergiugpabperiougbsepuirgnsedprgisuoednbrgpasiourgbpaeiurgbedprgoiuanrghpoduifrpnghapdo[rgbnua[ogrbsdfkl;ghjuna;dolrng;aodrnghdp;oarhbpdrohinsdprtohinsdpohnd[thsidnrh[oidsfg[osidmgopsdngfasdnriouganroipugnnrgodnro[gnos[dgnoisenroguisdogo[srgnsd[orgnsdporgndrpginsdpiugnaegoind[rofigndr[ogadr[oigimae[rognbe[orihga[ga[eordignad[orighna[doighja[oidrghja;origja;orhgaoyeisufvoauweyfbsilebfoauiywbglaiuseyrbgeilsdrgbdslirgbsdail;rnsd;ruhyiorhdr</string>
+    <string name="profile_item_my_favourites">My favourites</string>
+    <string name="profile_item_history">History</string>
+    <string name="profile_item_offline_data">Offline data</string>
+    <string name="profile_item_faq">FAQ</string>
 </resources>
