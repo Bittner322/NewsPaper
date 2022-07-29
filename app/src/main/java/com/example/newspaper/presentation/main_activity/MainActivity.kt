@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
             add(R.id.mainFrameLayout, newsFragment)
             add(R.id.mainFrameLayout, profileFragment)
             show(newsFragment)
+            hide(profileFragment)
         }
 
         binding.mainMenu.setOnItemSelectedListener { menuItem ->
@@ -43,11 +44,7 @@ class MainActivity : AppCompatActivity() {
                         hide(newsFragment)
                     }
             }
-
             return@setOnItemSelectedListener true
         }
-
     }
-
-
 }
