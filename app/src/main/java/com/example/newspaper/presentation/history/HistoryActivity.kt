@@ -6,15 +6,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.data.database.Article
-import com.example.newspaper.data.database.ArticleDatabase
 import com.example.newspaper.databinding.ActivityHistoryBinding
 import com.example.newspaper.presentation.full_article.FullArticleActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class HistoryActivity : AppCompatActivity() {
 

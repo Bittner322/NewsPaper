@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
-            android:text="News"
+            android:text="@string/main_activity_news"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -48,9 +48,6 @@
         app:menu="@menu/main_menu"
         app:itemTextColor="@color/menu_text_color_selector"
         android:background="@color/white"
-        app:itemIconTint="@color/dark"
-        />
-
-
+        app:itemIconTint="@color/dark" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

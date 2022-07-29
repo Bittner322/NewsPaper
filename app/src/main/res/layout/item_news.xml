@@ -34,9 +34,9 @@
                 android:fontFamily="@font/poppins_bold"
                 android:maxLength="100"
                 android:maxLines="3"
-                android:text="Title of the article"
+                android:text="@string/news_item_title_of_article"
                 android:textColor="@color/black"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_max="300dp" />
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Resource"
+                android:text="@string/news_item_resource"
                 app:layout_constraintStart_toStartOf="@+id/titleTextView"
                 app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 

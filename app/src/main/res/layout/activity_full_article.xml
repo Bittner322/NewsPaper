@@ -69,7 +69,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:text="Title of an test article"
+                android:text="@string/full_article_layout_test_title"
                 android:textColor="@color/black"
                 android:textSize="36sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Emma Nolan"
+                android:text="@string/full_article_layout_test_author"
                 android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fullArticleDescriptionTextView" />
@@ -104,7 +104,7 @@
                 android:id="@+id/fullArticleDot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" · "
+                android:text="@string/full_article_layout_dot_with_two_spaces"
                 app:layout_constraintBottom_toBottomOf="@+id/fullArticleAuthorTextView"
                 app:layout_constraintStart_toEndOf="@+id/fullArticleAuthorTextView"
                 app:layout_constraintTop_toTopOf="@+id/fullArticleAuthorTextView" />
@@ -114,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:text="2022-07-04"
+                android:text="@string/full_article_layout_date"
                 app:layout_constraintBottom_toBottomOf="@+id/fullArticleDot"
                 app:layout_constraintStart_toEndOf="@+id/fullArticleDot"
                 app:layout_constraintTop_toTopOf="@+id/fullArticleDot" />

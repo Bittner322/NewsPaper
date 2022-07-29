@@ -7,4 +7,19 @@
     <string name="profile_item_history">History</string>
     <string name="profile_item_offline_data">Offline data</string>
     <string name="profile_item_faq">FAQ</string>
+
+    <string name="main_activity_news">News</string>
+
+    <string name="profile_fragment_username">John Doe</string>
+
+    <string name="full_article_layout_test_title">Title of an test article</string>
+    <string name="full_article_layout_test_author">Emma Nolan</string>
+    <string name="full_article_layout_dot_with_two_spaces"> · </string>
+    <string name="full_article_layout_date">2022-07-04</string>
+
+    <string name="history_layout_clear_history_button">Clear history</string>
+
+    <string name="news_item_title_of_article">Title of the article</string>
+
+    <string name="news_item_resource">Resource</string>
 </resources>

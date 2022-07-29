@@ -9,10 +9,6 @@ import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newspaper.R
 import com.example.newspaper.data.database.Article
-import com.example.newspaper.data.database.ArticleDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class FavoriteArticlesAdapter(
     private val onToggleChecked: (Article) -> Unit,
@@ -51,7 +47,7 @@ class FavoriteArticlesAdapter(
         }
 
         init {
-            itemView.setOnClickListener() {
+            itemView.setOnClickListener {
                 onItemClick?.invoke(data[adapterPosition])
             }
 

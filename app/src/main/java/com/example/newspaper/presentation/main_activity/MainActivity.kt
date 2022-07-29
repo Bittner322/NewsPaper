@@ -1,9 +1,7 @@
 package com.example.newspaper.presentation.main_activity
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.newspaper.R
 import com.example.newspaper.databinding.ActivityMainBinding
@@ -25,13 +23,25 @@ class MainActivity : AppCompatActivity() {
         val newsFragment = NewsFragment()
         val profileFragment = ProfileFragment()
 
-        replaceFragment(newsFragment)
+        supportFragmentManager.commit {
+            add(R.id.mainFrameLayout, newsFragment)
+            add(R.id.mainFrameLayout, profileFragment)
+            show(newsFragment)
+        }
 
         binding.mainMenu.setOnItemSelectedListener { menuItem ->
 
             when(menuItem.itemId) {
-                R.id.action_home -> replaceFragment(newsFragment)
-                R.id.action_profile -> replaceFragment(profileFragment)
+                R.id.action_home ->
+                    supportFragmentManager.commit {
+                        show(newsFragment)
+                        hide(profileFragment)
+                    }
+                R.id.action_profile ->
+                    supportFragmentManager.commit {
+                        show(profileFragment)
+                        hide(newsFragment)
+                    }
             }
 
             return@setOnItemSelectedListener true
@@ -39,9 +49,5 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.commit {
-            replace(R.id.mainFrameLayout, fragment)
-        }
-    }
+
 }

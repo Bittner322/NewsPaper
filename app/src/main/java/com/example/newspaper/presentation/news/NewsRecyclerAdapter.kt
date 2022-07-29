@@ -1,7 +1,6 @@
 package com.example.newspaper.presentation.news
 
 import android.annotation.SuppressLint
-import android.text.BoringLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
