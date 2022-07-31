@@ -11,6 +11,8 @@ import com.example.newspaper.presentation.full_article.FullArticleActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+private const val INTENT_ARTICLE_ID = "articleId"
+
 class FavoriteArticleActivity : AppCompatActivity() {
 
     private val viewModel: FavoriteArticleViewModel by viewModels()
@@ -28,6 +30,7 @@ class FavoriteArticleActivity : AppCompatActivity() {
         setContentView(view)
 
         val adapter = FavoriteArticlesAdapter(
+            onItemClick = ::onItemClick,
             onToggleChecked = ::onToggleCheckClick,
             onToggleNonChecked = ::onToggleNonCheckClick,
         )
@@ -41,12 +44,12 @@ class FavoriteArticleActivity : AppCompatActivity() {
                 }
                 .launchIn(this)
         }
+    }
 
-        adapter.onItemClick = {
-            val toFullArticleIntent = Intent(this, FullArticleActivity::class.java)
-            toFullArticleIntent.putExtra("articleId", it.articleId)
-            startActivity(toFullArticleIntent)
-        }
+    private fun onItemClick(article: Article) {
+        val toFullArticleIntent = Intent(this, FullArticleActivity::class.java)
+        toFullArticleIntent.putExtra(INTENT_ARTICLE_ID, article.articleId)
+        startActivity(toFullArticleIntent)
     }
 
     private fun onToggleCheckClick(article: Article) {

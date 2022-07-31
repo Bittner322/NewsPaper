@@ -4,11 +4,12 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.bumptech.glide.Glide
+import coil.load
 import com.example.newspaper.databinding.ActivityFullArticleBinding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+private const val INTENT_ARTICLE_ID = "articleId"
 
 class FullArticleActivity : AppCompatActivity() {
 
@@ -18,7 +19,7 @@ class FullArticleActivity : AppCompatActivity() {
 
     private val viewModel: FullArticleViewModel by viewModels {
         FullArticleViewModelFactory(
-            articleId = intent.getIntExtra("articleId", 0)
+            articleId = intent.getIntExtra(INTENT_ARTICLE_ID, 0)
         )
     }
 
@@ -46,12 +47,7 @@ class FullArticleActivity : AppCompatActivity() {
                 .launchIn(this)
 
             viewModel.urlToImageStateFlow
-                .onEach {
-                    Glide
-                        .with(this@FullArticleActivity)
-                        .load(it)
-                        .into(binding.backDropImageView)
-                }
+                .onEach { binding.backDropImageView.load(it) }
                 .launchIn(this)
         }
     }

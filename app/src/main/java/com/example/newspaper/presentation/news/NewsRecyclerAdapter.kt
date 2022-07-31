@@ -51,10 +51,7 @@ class NewsRecyclerAdapter(
 
             titleTextView.text = item.title
 
-            if(item.source.name != null)
-                authorTextView.text = item.source.name
-            else
-                authorTextView.text = "Unknown resource"
+            authorTextView.text = item.source.name
 
             contentTextView.text = item.description
 

@@ -15,7 +15,6 @@ class NewsViewModel: ViewModel() {
 
     private val repository = NewsRepository()
 
-
     init {
         viewModelScope.launch {
             repository.loadAllArticlesIntoDatabase()

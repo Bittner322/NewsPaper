@@ -21,7 +21,7 @@ class FullArticleViewModel(
     val authorStateFlow = MutableStateFlow("")
     val dateStateFlow = MutableStateFlow("")
     val descriptionStateFlow = MutableStateFlow("")
-    val urlToImageStateFlow = MutableStateFlow<Any>(R.drawable.if_image_null2)
+    val urlToImageStateFlow = MutableStateFlow<Any>(R.drawable.if_image_null)
 
     init {
         loadData()

@@ -11,8 +11,12 @@ import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.data.database.Article
 import com.example.newspaper.databinding.FragmentNewsBinding
 import com.example.newspaper.presentation.full_article.FullArticleActivity
+import com.example.newspaper.presentation.main_activity.MainActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.joinAll
+
+private const val INTENT_ARTICLE_ID = "articleId"
 
 class NewsFragment : Fragment() {
 
@@ -62,7 +66,7 @@ class NewsFragment : Fragment() {
         viewModel.addArticleToHistory(article)
 
         val toFullArticleActivityIntent = Intent(requireActivity(), FullArticleActivity::class.java)
-        toFullArticleActivityIntent.putExtra("articleId", article.articleId)
+        toFullArticleActivityIntent.putExtra(INTENT_ARTICLE_ID, article.articleId)
         startActivity(toFullArticleActivityIntent)
     }
 }

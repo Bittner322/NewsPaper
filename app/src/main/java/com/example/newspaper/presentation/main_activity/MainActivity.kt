@@ -1,7 +1,9 @@
 package com.example.newspaper.presentation.main_activity
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.commit
 import com.example.newspaper.R
 import com.example.newspaper.databinding.ActivityMainBinding
@@ -14,12 +16,20 @@ class MainActivity : AppCompatActivity() {
     private val binding :ActivityMainBinding
         get() = _binding!!
 
+    private val viewModel: MainActivityViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        installSplashScreen().apply {
+            setKeepOnScreenCondition {
+                viewModel.isLoading.value
+            }
+        }
+
         _binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
         val newsFragment = NewsFragment()
         val profileFragment = ProfileFragment()
 

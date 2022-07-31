@@ -15,7 +15,6 @@ import com.example.newspaper.presentation.history.HistoryActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-
 class ProfileFragment : Fragment() {
 
     private val profileViewModel: ProfileViewModel by viewModels()
@@ -67,11 +66,4 @@ class ProfileFragment : Fragment() {
             }
         }
     }
-
-    override fun onDestroyView() {
-        _binding = null
-
-        super.onDestroyView()
-    }
-
 }

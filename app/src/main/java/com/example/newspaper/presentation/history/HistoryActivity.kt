@@ -11,6 +11,8 @@ import com.example.newspaper.presentation.full_article.FullArticleActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+private const val INTENT_ARTICLE_ID = "articleId"
+
 class HistoryActivity : AppCompatActivity() {
 
     private var _binding: ActivityHistoryBinding? = null
@@ -43,7 +45,7 @@ class HistoryActivity : AppCompatActivity() {
 
     private fun onHistoryClick(article: Article) {
         val toFullArticleActivityIntent = Intent(this, FullArticleActivity::class.java)
-        toFullArticleActivityIntent.putExtra("articleId", article.articleId)
+        toFullArticleActivityIntent.putExtra(INTENT_ARTICLE_ID, article.articleId)
         startActivity(toFullArticleActivityIntent)
     }
 }
