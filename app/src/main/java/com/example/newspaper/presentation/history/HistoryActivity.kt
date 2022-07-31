@@ -46,12 +46,4 @@ class HistoryActivity : AppCompatActivity() {
         toFullArticleActivityIntent.putExtra("articleId", article.articleId)
         startActivity(toFullArticleActivityIntent)
     }
-
-    override fun onDestroy() {
-
-        _binding = null
-
-        super.onDestroy()
-    }
-
 }

@@ -17,7 +17,7 @@ class FavoriteArticleViewModel: ViewModel() {
 
     init {
         viewModelScope.launch {
-            _articles.emit(repository.getFavoriteArticles())
+            _articles.emit(repository.getFavoriteArticles().reversed())
         }
     }
 

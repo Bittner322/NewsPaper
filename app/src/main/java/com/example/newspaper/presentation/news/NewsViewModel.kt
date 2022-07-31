@@ -19,7 +19,7 @@ class NewsViewModel: ViewModel() {
     init {
         viewModelScope.launch {
             repository.loadAllArticlesIntoDatabase()
-            val response = repository.getNews()
+            val response = repository.getNews().reversed()
             _news.emit(response)
         }
     }
