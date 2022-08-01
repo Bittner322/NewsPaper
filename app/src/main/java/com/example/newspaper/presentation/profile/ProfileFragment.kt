@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.data.repositories.models.ProfileCard
 import com.example.newspaper.databinding.FragmentProfileBinding
+import com.example.newspaper.presentation.faq.FaqActivity
 import com.example.newspaper.presentation.favorite_articles.FavoriteArticleActivity
 import com.example.newspaper.presentation.history.HistoryActivity
 import kotlinx.coroutines.flow.launchIn
@@ -62,7 +63,8 @@ class ProfileFragment : Fragment() {
                 // TODO
             }
             ProfileCard.FAQ -> {
-                // TODO
+                val toFaqIntent = Intent(requireActivity(), FaqActivity::class.java)
+                startActivity(toFaqIntent)
             }
         }
     }

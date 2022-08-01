@@ -22,4 +22,7 @@
     <string name="news_item_title_of_article">Title of the article</string>
 
     <string name="news_item_resource">Resource</string>
+
+    <string name="faq_main_text">This is my news application.</string>
+    <string name="faq_contacts">github.com/bittner322/NewsPaper</string>
 </resources>

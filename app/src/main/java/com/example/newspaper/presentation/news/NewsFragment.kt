@@ -11,10 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.data.database.Article
 import com.example.newspaper.databinding.FragmentNewsBinding
 import com.example.newspaper.presentation.full_article.FullArticleActivity
-import com.example.newspaper.presentation.main_activity.MainActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.joinAll
 
 private const val INTENT_ARTICLE_ID = "articleId"
 
@@ -43,12 +41,14 @@ class NewsFragment : Fragment() {
         binding.newsRecyclerView.adapter = adapter
 
         lifecycleScope.launchWhenStarted {
+
             viewModel.news
                 .onEach {
                     adapter.setData(it)
                 }
                 .launchIn(this)
         }
+
 
         return view
     }
