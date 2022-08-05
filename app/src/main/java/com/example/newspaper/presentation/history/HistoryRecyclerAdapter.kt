@@ -42,8 +42,8 @@ class HistoryRecyclerAdapter(
 
             titleTextView.text = item.title
 
-            if(item.source.name != null)
-                authorTextView.text = item.source.name
+            if(item.author != null)
+                authorTextView.text = item.author
             else
                 authorTextView.text = "Unknown resource"
 

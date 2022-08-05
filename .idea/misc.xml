@@ -19,6 +19,10 @@
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/ic_arrow_up.xml" value="0.341" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/ic_favourite.xml" value="0.348" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/ic_heart_filled.xml" value="0.348" />
+        <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/ic_heart_unfilled.xml" value="0.31" />
+        <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/ic_history.xml" value="0.31" />
+        <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/ic_home_unfilled.xml" value="0.31" />
+        <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/ic_launcher_background.xml" value="0.31" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.348" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/ic_like.xml" value="0.348" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/keyboard_arrow_up-48px.xml" value="0.34" />
@@ -35,7 +39,7 @@
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/full_activle_coord_layout.xml" value="0.25" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/item_news.xml" value="0.30085470085470084" />
-        <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/item_profile.xml" value="0.30085470085470084" />
+        <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/item_profile.xml" value="0.25" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/news_list_item.xml" value="0.33" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/profile_recycler_item.xml" value="0.33" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/menu/main_menu.xml" value="0.275" />

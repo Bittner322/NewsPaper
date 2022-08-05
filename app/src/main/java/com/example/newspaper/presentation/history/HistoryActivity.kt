@@ -45,7 +45,7 @@ class HistoryActivity : AppCompatActivity() {
 
     private fun onHistoryClick(article: Article) {
         val toFullArticleActivityIntent = Intent(this, FullArticleActivity::class.java)
-        toFullArticleActivityIntent.putExtra(INTENT_ARTICLE_ID, article.articleId)
+        toFullArticleActivityIntent.putExtra(INTENT_ARTICLE_ID, article.url)
         startActivity(toFullArticleActivityIntent)
     }
 }

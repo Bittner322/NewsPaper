@@ -10,12 +10,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class FullArticleViewModel(
-    private val articleId: Int
+    private val url: String
 ): ViewModel() {
 
-    private val database = ArticleDatabase.getInstance(MyApplication.applicationContext())
+    private val database = ArticleDatabase.INSTANCE
 
     val titleStateFlow = MutableStateFlow("")
     val authorStateFlow = MutableStateFlow("")
@@ -27,15 +29,21 @@ class FullArticleViewModel(
         loadData()
     }
 
+    private fun convertLongToTime(time: Long): String {
+        val date = Date(time)
+        val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+        return format.format(date).toString()
+    }
+
     private fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {
-            val article = database.articleDao().getArticleById(articleId)
+            val article = database.articleDao().getArticleById(url)
 
             titleStateFlow.update { article.title }
 
             authorStateFlow.update { article.author }
 
-            dateStateFlow.update { article.publishedAt.substring(0, 10) }
+            dateStateFlow.update { convertLongToTime(article.publishedAt).substring(0,10) }
 
             descriptionStateFlow.update { article.content.take(200) }
 
@@ -45,11 +53,11 @@ class FullArticleViewModel(
 }
 
 class FullArticleViewModelFactory(
-    private val articleId: Int
+    private val url: String
 ): ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return FullArticleViewModel(articleId) as T
+        return FullArticleViewModel(url) as T
     }
 }

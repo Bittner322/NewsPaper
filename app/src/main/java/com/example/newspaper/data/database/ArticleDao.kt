@@ -23,22 +23,19 @@ interface ArticleDao {
     @Query("SELECT * FROM Articles WHERE isFavorite = 1")
     fun getAllFavoriteArticles(): List<Article>
 
-    @Query("SELECT * FROM Articles WHERE articleId = (:id)")
-    fun getArticleById(id: Int) : Article
+    @Query("SELECT * FROM Articles WHERE url = (:id)")
+    fun getArticleById(id: String) : Article
 
-    @Query("SELECT * FROM Articles WHERE articleId = (:id) AND isFavorite = (:isFavorite)")
+    @Query("SELECT * FROM Articles WHERE url = (:id) AND isFavorite = (:isFavorite)")
     fun getFavoriteArticleById(id: Int, isFavorite: Boolean): Article
 
-    @Query("UPDATE Articles SET isFavorite = 1 WHERE articleId = (:id)")
-    fun setArticleFavorite(id: Int)
+    @Query("UPDATE Articles SET isFavorite = 1 WHERE url = (:id)")
+    fun setArticleFavorite(id: String)
 
-    @Query("UPDATE Articles SET isFavorite = 0 WHERE articleId = (:id)")
-    fun setArticleNonFavorite(id: Int)
+    @Query("UPDATE Articles SET isFavorite = 0 WHERE url = (:id)")
+    fun setArticleNonFavorite(id: String)
 
-    @Query("SELECT isFavorite FROM Articles WHERE articleId = (:id)")
-    fun checkArticleIsFavorite(id: Int): Boolean
-
-    @Query("SELECT * FROM Articles INNER JOIN ArticleHistory ON Articles.articleId = ArticleHistory.articleId")
+    @Query("SELECT * FROM Articles INNER JOIN ArticleHistory ON Articles.url = ArticleHistory.url")
     fun getAllHistoryArticles(): List<Article>
 
 }

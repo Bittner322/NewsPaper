@@ -28,9 +28,12 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentProfileBinding.inflate(layoutInflater)
-        val view = binding.root
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val adapter = ProfileRecyclerAdapter(
             onItemClick = ::onProfileCardClick
@@ -45,8 +48,6 @@ class ProfileFragment : Fragment() {
                 }
                 .launchIn(this)
         }
-
-        return view
     }
 
     private fun onProfileCardClick(profileCard: ProfileCard) {
@@ -56,15 +57,15 @@ class ProfileFragment : Fragment() {
                 startActivity(toFavoriteArticleActivityIntent)
             }
             ProfileCard.HISTORY -> {
-                val toHistoryIntent = Intent(requireActivity(), HistoryActivity::class.java)
-                startActivity(toHistoryIntent)
+                val toHistoryActivityIntent = Intent(requireActivity(), HistoryActivity::class.java)
+                startActivity(toHistoryActivityIntent)
             }
             ProfileCard.OFFLINE_DATA -> {
                 // TODO
             }
             ProfileCard.FAQ -> {
-                val toFaqIntent = Intent(requireActivity(), FaqActivity::class.java)
-                startActivity(toFaqIntent)
+                val toFaqActivityIntent = Intent(requireActivity(), FaqActivity::class.java)
+                startActivity(toFaqActivityIntent)
             }
         }
     }

@@ -1,6 +1,5 @@
 package com.example.newspaper.data.repositories
 
-import com.example.newspaper.MyApplication
 import com.example.newspaper.data.database.Article
 import com.example.newspaper.data.database.ArticleDatabase
 import com.example.newspaper.data.database.ArticleHistory
@@ -13,15 +12,16 @@ import java.util.*
 class NewsRepository {
 
     private val newsService = NewsServiceFactory.newsService
-    private val articleDatabase = ArticleDatabase.getInstance(MyApplication.applicationContext())
+    private val articleDatabase = ArticleDatabase.INSTANCE
 
     private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-    private val date = Calendar.getInstance().apply {
+    private val currentDate = Calendar.getInstance().apply {
         add(Calendar.MONTH, -1)
     }.time
 
+
     private val from = runCatching {
-        simpleDateFormat.format(date)
+        simpleDateFormat.format(currentDate)
     }.getOrNull().orEmpty()
 
     suspend fun getNews(): List<Article> {
@@ -37,15 +37,15 @@ class NewsRepository {
     }
 
     suspend fun loadAllArticlesIntoDatabase() {
+
         articleDatabase.articleDao().insertAll(newsService.getNews(from = from).articles.map {
             Article(
-                it.source,
-                it.author ?: "",
-                it.title,
-                it.description?: "",
-                it.url?: "",
-                it.urlToImage?: "",
-                it.publishedAt,
+                it.author.orEmpty(),
+                it.title.orEmpty(),
+                it.description.orEmpty(),
+                it.url,
+                it.urlToImage.orEmpty(),
+                simpleDateFormat.parse(it.publishedAt).time,
                 it.content,
                 isFavorite = false
             )
@@ -60,7 +60,7 @@ class NewsRepository {
 
     suspend fun addItemToHistory(article: Article) {
         withContext(Dispatchers.IO) {
-            articleDatabase.historyDao().add(ArticleHistory(article.articleId, article.publishedAt))
+            articleDatabase.historyDao().add(ArticleHistory(article.url, article.publishedAt))
         }
     }
 
@@ -72,13 +72,13 @@ class NewsRepository {
 
     suspend fun setArticleFavorite(article: Article) {
         withContext(Dispatchers.IO) {
-            articleDatabase.articleDao().setArticleFavorite(article.articleId)
+            articleDatabase.articleDao().setArticleFavorite(article.url)
         }
     }
 
     suspend fun setArticleNonFavorite(article: Article) {
         withContext(Dispatchers.IO) {
-            articleDatabase.articleDao().setArticleNonFavorite(article.articleId)
+            articleDatabase.articleDao().setArticleNonFavorite(article.url)
         }
     }
 

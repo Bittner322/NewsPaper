@@ -19,7 +19,7 @@ class FullArticleActivity : AppCompatActivity() {
 
     private val viewModel: FullArticleViewModel by viewModels {
         FullArticleViewModelFactory(
-            articleId = intent.getIntExtra(INTENT_ARTICLE_ID, 0)
+            url = intent.getStringExtra(INTENT_ARTICLE_ID).toString()
         )
     }
 

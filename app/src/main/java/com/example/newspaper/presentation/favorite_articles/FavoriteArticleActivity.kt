@@ -48,7 +48,7 @@ class FavoriteArticleActivity : AppCompatActivity() {
 
     private fun onItemClick(article: Article) {
         val toFullArticleIntent = Intent(this, FullArticleActivity::class.java)
-        toFullArticleIntent.putExtra(INTENT_ARTICLE_ID, article.articleId)
+        toFullArticleIntent.putExtra(INTENT_ARTICLE_ID, article.url)
         startActivity(toFullArticleIntent)
     }
 

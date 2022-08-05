@@ -53,7 +53,7 @@ class FavoriteArticlesAdapter(
 
             titleTextView.text = item.title
 
-            authorTextView.text = item.source.name
+            authorTextView.text = item.author
 
             contentTextView.text = item.description
 

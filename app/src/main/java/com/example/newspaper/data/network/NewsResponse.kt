@@ -1,37 +1,42 @@
 package com.example.newspaper.data.network
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import java.util.*
 
+@Serializable
 data class NewsResponse(
-    @SerializedName("status")
+    @SerialName("status")
     val status: String,
-    @SerializedName("totalResults")
+    @SerialName("totalResults")
     val totalResults: Int,
-    @SerializedName("articles")
+    @SerialName("articles")
     val articles: List<Articles>
 ) {
+    @Serializable
     data class Articles(
-        @SerializedName("source")
+        @SerialName("source")
         val source: Source,
-        @SerializedName("author")
-        val author: String,
-        @SerializedName("title")
-        val title: String,
-        @SerializedName("description")
-        val description: String,
-        @SerializedName("url")
+        @SerialName("author")
+        val author: String?,
+        @SerialName("title")
+        val title: String?,
+        @SerialName("description")
+        val description: String?,
+        @SerialName("url")
         val url: String,
-        @SerializedName("urlToImage")
-        val urlToImage: String,
-        @SerializedName("publishedAt")
+        @SerialName("urlToImage")
+        val urlToImage: String?,
+        @SerialName("publishedAt")
         val publishedAt: String,
-        @SerializedName("content")
+        @SerialName("content")
         val content : String
     ) {
+        @Serializable
         data class Source (
-            @SerializedName("id")
-            val id: String,
-            @SerializedName("name")
+            @SerialName("id")
+            val id: String?,
+            @SerialName("name")
             val name: String
         )
     }
