@@ -1,38 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.faq.FaqActivity">
+    tools:context=".presentation.faq.FaqActivity"
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/imageViewFaq"
+        android:layout_width="256dp"
+        android:layout_gravity="center"
+        android:layout_height="256dp"
+        android:src="@drawable/ic_faq"
+        android:contentDescription="@string/faq_content_image_desc"/>
+
+    <TextView
+        android:id="@+id/faqLinkToGitHubTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/faq_contacts"
+        android:autoLink="web"
+        android:textColor="@color/black"
+        android:contentDescription="@string/faq_link_desc"/>
 
-        <ImageView
-            android:id="@+id/imageViewFaq"
-            android:layout_width="256dp"
-            android:layout_gravity="center"
-            android:layout_height="256dp"
-            android:src="@drawable/ic_faq" />
-
-        <TextView
-            android:id="@+id/faqLinkToGitHubTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="18sp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/faq_contacts"
-            android:autoLink="web"
-            android:textColor="@color/black"/>
-
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

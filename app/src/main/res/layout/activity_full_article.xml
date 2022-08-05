@@ -53,14 +53,14 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/fullArticleTitleTextView"
@@ -74,7 +74,8 @@
                 android:textSize="36sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/full_article_image_desc"/>
 
             <TextView
                 android:id="@+id/fullArticleDescriptionTextView"
@@ -87,7 +88,8 @@
                 android:text=""
                 android:textSize="20sp"
                 app:layout_constraintTop_toBottomOf="@+id/fullArticleTitleTextView"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:contentDescription="@string/full_article_content_desc"/>
 
             <TextView
                 android:id="@+id/fullArticleAuthorTextView"
@@ -98,7 +100,8 @@
                 android:text="@string/full_article_layout_test_author"
                 android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fullArticleDescriptionTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/fullArticleDescriptionTextView"
+                android:contentDescription="@string/full_article_author_desc"/>
 
             <TextView
                 android:id="@+id/fullArticleDot"
@@ -117,11 +120,12 @@
                 android:text="@string/full_article_layout_date"
                 app:layout_constraintBottom_toBottomOf="@+id/fullArticleDot"
                 app:layout_constraintStart_toEndOf="@+id/fullArticleDot"
-                app:layout_constraintTop_toTopOf="@+id/fullArticleDot" />
+                app:layout_constraintTop_toTopOf="@+id/fullArticleDot"
+                android:contentDescription="@string/full_article_date_desc"/>
 
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

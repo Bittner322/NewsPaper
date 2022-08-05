@@ -6,14 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".presentation.main_activity.MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/mainTop"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,9 +27,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/main_activity_news_desc"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/mainFrameLayout"
@@ -49,6 +52,7 @@
         app:menu="@menu/main_menu"
         app:itemTextColor="@color/menu_text_color_selector"
         android:background="@color/white"
-        app:itemIconTint="@color/dark" />
+        app:itemIconTint="@color/dark"
+        android:contentDescription="@string/main_activity_menu_desc"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

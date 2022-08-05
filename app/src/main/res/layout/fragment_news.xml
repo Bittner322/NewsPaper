@@ -13,16 +13,19 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/news_recycler_view_desc"/>
 
     <ProgressBar
         android:id="@+id/newsProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
+        android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/progress_bar_desc"/>
 
 </FrameLayout>

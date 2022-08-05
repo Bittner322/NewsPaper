@@ -1,28 +1,47 @@
 <resources>
     <string name="app_name">NewsPaper</string>
     <string name="api_key">a5d65121640a45d99c48715b67299a36</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile_item_my_favourites">My favourites</string>
     <string name="profile_item_history">History</string>
     <string name="profile_item_offline_data">Offline data</string>
     <string name="profile_item_faq">FAQ</string>
+    <string name="profile_picture_desc">Your profile picture</string>
+    <string name="profile_name_desc">Your name</string>
+    <string name="profile_fragment_username">John Doe</string>
 
     <string name="main_activity_news">News</string>
-
-    <string name="profile_fragment_username">John Doe</string>
+    <string name="main_activity_news_desc">A top panel with text \'news\'</string>
+    <string name="main_activity_menu_desc">Main menu. Left button to switch for news, right for your profile.</string>
 
     <string name="full_article_layout_test_title">Title of an test article</string>
     <string name="full_article_layout_test_author">Emma Nolan</string>
     <string name="full_article_layout_dot_with_two_spaces"> · </string>
     <string name="full_article_layout_date">2022-07-04</string>
+    <string name="full_article_image_desc">Image of an article</string>
+    <string name="full_article_content_desc">Content of an article</string>
+    <string name="full_article_author_desc">Author of an article</string>
+    <string name="full_article_date_desc">Date of an article</string>
 
     <string name="history_layout_clear_history_button">Clear history</string>
+    <string name="history_clear_button_desc">A clear button</string>
 
     <string name="news_item_title_of_article">Title of the article</string>
-
     <string name="news_item_resource">Resource</string>
+    <string name="news_item_toggle_desc">Favorite button, by click on it you can add article to favorite list</string>
+    <string name="news_item_title_desc">Title of an article</string>
+    <string name="news_item_content_desc">Content of an article</string>
 
     <string name="faq_main_text">This is my news application.</string>
     <string name="faq_contacts">github.com/bittner322/NewsPaper</string>
+    <string name="faq_content_image_desc">Faq icon under which link to github of developer</string>
+    <string name="faq_link_desc">Link to github of developer</string>
+
+    <string name="progress_bar_desc">A progress bar, news are loading, please, wait.</string>
+
+    <string name="profile_recycler_view_desc">A list with favorite content, history and FAQ.</string>
+    <string name="news_recycler_view_desc">A list with news</string>
+    <string name="history_recycler_view_desc">A list with history of your views.</string>
+    <string name="favorite_recycler_view_desc">A list with your favorite articles</string>
 </resources>
