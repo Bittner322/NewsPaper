@@ -60,9 +60,6 @@ class ProfileFragment : Fragment() {
                 val toHistoryActivityIntent = Intent(requireActivity(), HistoryActivity::class.java)
                 startActivity(toHistoryActivityIntent)
             }
-            ProfileCard.OFFLINE_DATA -> {
-                // TODO
-            }
             ProfileCard.FAQ -> {
                 val toFaqActivityIntent = Intent(requireActivity(), FaqActivity::class.java)
                 startActivity(toFaqActivityIntent)

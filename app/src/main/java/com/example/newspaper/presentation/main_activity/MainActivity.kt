@@ -2,6 +2,7 @@ package com.example.newspaper.presentation.main_activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.commit
 import com.example.newspaper.R
 import com.example.newspaper.databinding.ActivityMainBinding
@@ -15,7 +16,11 @@ class MainActivity : AppCompatActivity() {
         get() = _binding!!
     
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        installSplashScreen()
+
         super.onCreate(savedInstanceState)
+
         _binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
