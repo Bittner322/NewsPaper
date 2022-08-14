@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 @Database(entities = [Article::class, ArticleHistory::class, User::class], version = 7, exportSchema = false)
-@TypeConverters(ArticleDateConverter::class)
+
 abstract class ArticleDatabase: RoomDatabase() {
 
     abstract fun articleDao(): ArticleDao
