@@ -2,6 +2,10 @@
     <string name="app_name">NewsPaper</string>
     <string name="api_key">a5d65121640a45d99c48715b67299a36</string>
 
+    <string name="okey">OK</string>
+    <string name="next">Next</string>
+    <string name="start">Let\'s start!</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile_item_my_favourites">My favourites</string>
     <string name="profile_item_history">History</string>
@@ -10,6 +14,7 @@
     <string name="profile_picture_desc">Your profile picture</string>
     <string name="profile_name_desc">Your name</string>
     <string name="profile_fragment_username">John Doe</string>
+    <string name="profile_username_change">Set your new name:</string>
 
     <string name="main_activity_news">News</string>
     <string name="main_activity_news_desc">A top panel with text \'news\'</string>
@@ -44,4 +49,12 @@
     <string name="news_recycler_view_desc">A list with news</string>
     <string name="history_recycler_view_desc">A list with history of your views.</string>
     <string name="favorite_recycler_view_desc">A list with your favorite articles</string>
+
+    <string name="onboarding_item_1_hello">Welcome to NewsPaper!</string>
+    <string name="onboarding_item_1_speaker_desc">A news picture</string>
+    <string name="onboarding_item_1_welcome_desc">Welcome to NewsPaper text</string>
+    <string name="onboarding_item_2_favorite">You can make interesting articles favorite to read it later!</string>'
+    <string name="onboarding_item_2_gif">A gif with jumping heart</string>
+    <string name="onboarding_item_2_start_button">A button for start reading news!</string>
+
 </resources>

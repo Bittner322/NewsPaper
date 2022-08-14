@@ -2,7 +2,6 @@ package com.example.newspaper.data.network
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 @Serializable
 data class NewsResponse(

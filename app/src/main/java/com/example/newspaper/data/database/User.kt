@@ -11,8 +11,7 @@ data class User(
     @ColumnInfo(name = "userId")
     val userId: Int,
 
-    @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "surname") val surname: String,
+    @ColumnInfo(name = "username") val username: String,
 
     @ColumnInfo(name = "userImage")
     val userImage: String,

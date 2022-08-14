@@ -23,7 +23,7 @@ class NewsViewModel: ViewModel() {
         viewModelScope.launch {
             _isProgressBarVisibleFlow.update { true }
             repository.loadAllArticlesIntoDatabase()
-            val response = repository.getNews().sortedBy { it.publishedAt }
+            val response = repository.getNews().sortedByDescending { it.publishedAt }
             _news.update { response }
             _isProgressBarVisibleFlow.update { false }
         }

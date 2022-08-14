@@ -15,6 +15,12 @@ class ProfileViewModel: ViewModel() {
 
     private val repository = ProfileRepository()
 
+    fun setImage(id: Int, image: String) {
+        viewModelScope.launch {
+            repository.setUserImage(id = id, image = image)
+        }
+    }
+
     init {
         viewModelScope.launch {
             val response = repository.getCards()

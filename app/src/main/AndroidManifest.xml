@@ -17,6 +17,16 @@
         android:theme="@style/Theme.NewsPaper"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.onboarding_flow.OnboardingFlowActivity"
+            android:exported="true"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".presentation.faq.FaqActivity"
             android:exported="false" />
         <activity
@@ -30,13 +40,8 @@
             android:exported="true" />
         <activity
             android:name=".presentation.main_activity.MainActivity"
-            android:exported="true"
-            android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

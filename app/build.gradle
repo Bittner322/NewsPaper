@@ -3,7 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.devtools.ksp'
     id 'org.jetbrains.kotlin.plugin.serialization'
-
 }
 
 android {
@@ -24,8 +23,9 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles fileTree('proguard').asList().toArray()
         }
     }
     compileOptions {
@@ -39,6 +39,15 @@ android {
 
 dependencies {
 
+    //scrollingPagerIndicator
+    implementation "com.tbuonomo:dotsindicator:4.3"
+
+    //gifdrawable
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'
+
+    //viewpager
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
     //kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
@@ -46,7 +55,6 @@ dependencies {
 
     //paging
     def paging_version = "3.1.1"
-
     implementation("androidx.paging:paging-runtime:$paging_version")
 
     //ksp

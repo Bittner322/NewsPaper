@@ -51,9 +51,19 @@ class NewsRecyclerAdapter(
 
             titleTextView.text = item.title
 
-            authorTextView.text = item.author
+            if(item.author.isEmpty()) {
+                authorTextView.visibility = View.GONE
+            }
+            else {
+                authorTextView.text = item.author
+            }
 
-            contentTextView.text = item.description
+            if(item.description.isEmpty()) {
+                contentTextView.visibility = View.GONE
+            }
+            else {
+                contentTextView.text = item.description
+            }
 
             favoriteToggle.isChecked = item.isFavorite
         }

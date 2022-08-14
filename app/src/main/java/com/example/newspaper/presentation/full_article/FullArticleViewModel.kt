@@ -3,7 +3,6 @@ package com.example.newspaper.presentation.full_article
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.newspaper.MyApplication
 import com.example.newspaper.R
 import com.example.newspaper.data.database.ArticleDatabase
 import kotlinx.coroutines.Dispatchers

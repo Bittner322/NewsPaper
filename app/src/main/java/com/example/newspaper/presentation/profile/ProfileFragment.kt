@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.data.repositories.models.ProfileCard
 import com.example.newspaper.databinding.FragmentProfileBinding
+import com.example.newspaper.presentation.dialogs.UsernameChangeDialog
 import com.example.newspaper.presentation.faq.FaqActivity
 import com.example.newspaper.presentation.favorite_articles.FavoriteArticleActivity
 import com.example.newspaper.presentation.history.HistoryActivity
@@ -47,6 +48,12 @@ class ProfileFragment : Fragment() {
                     adapter.setData(it)
                 }
                 .launchIn(this)
+        }
+
+        binding.userNameTextView.setOnClickListener {
+            val dialogFragment = UsernameChangeDialog()
+            val manager = parentFragmentManager
+            dialogFragment.show(manager, "userNameChangeDialog")
         }
     }
 
