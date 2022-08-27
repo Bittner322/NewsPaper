@@ -1,12 +1,13 @@
-package com.example.newspaper.data.network
+package com.example.newspaper.di
 
+import com.example.newspaper.data.network.NewsService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 import retrofit2.create
 
-object NewsServiceFactory {
+class NetworkModule {
 
     private val contentType = "application/json".toMediaType()
 
@@ -16,4 +17,5 @@ object NewsServiceFactory {
         .build()
 
     val newsService = retrofit.create<NewsService>()
+
 }

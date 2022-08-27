@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.data.repositories.models.ProfileCard
 import com.example.newspaper.databinding.FragmentProfileBinding
+import com.example.newspaper.di.DiContainer
 import com.example.newspaper.presentation.dialogs.UsernameChangeDialog
 import com.example.newspaper.presentation.faq.FaqActivity
 import com.example.newspaper.presentation.favorite_articles.FavoriteArticleActivity
@@ -19,7 +20,7 @@ import kotlinx.coroutines.flow.onEach
 
 class ProfileFragment : Fragment() {
 
-    private val profileViewModel: ProfileViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by viewModels { DiContainer.profileFragmentModule.viewModelFactory }
 
     private var _binding: FragmentProfileBinding? = null
     private val binding: FragmentProfileBinding
@@ -44,11 +45,14 @@ class ProfileFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted {
             profileViewModel.cards
-                .onEach {
-                    adapter.setData(it)
-                }
+                .onEach { adapter.setData(it) }
+                .launchIn(this)
+
+            profileViewModel.usernameStateFlow
+                .onEach { binding.userNameTextView.text = it }
                 .launchIn(this)
         }
+
 
         binding.userNameTextView.setOnClickListener {
             val dialogFragment = UsernameChangeDialog()

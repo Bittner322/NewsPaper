@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.data.database.Article
 import com.example.newspaper.databinding.FragmentNewsBinding
+import com.example.newspaper.di.DiContainer
 import com.example.newspaper.presentation.full_article.FullArticleActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -19,7 +20,7 @@ private const val INTENT_ARTICLE_ID = "articleId"
 
 class NewsFragment : Fragment() {
 
-    private val viewModel: NewsViewModel by viewModels()
+    private val viewModel: NewsViewModel by viewModels { DiContainer.newsFragmentModule.viewModelFactory }
 
     private var _binding: FragmentNewsBinding? = null
     private val binding: FragmentNewsBinding
@@ -43,13 +44,13 @@ class NewsFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted {
 
-            viewModel.news
+            viewModel.newsFlow
                 .onEach {
                     adapter.setData(it)
                 }
                 .launchIn(this)
 
-            viewModel.isProgressBarVisibleFlow
+            viewModel.isProgressBarVisible
                 .onEach { isVisible ->
                     binding.newsProgressBar.isVisible = isVisible
                 }

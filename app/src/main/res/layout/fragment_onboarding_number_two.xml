@@ -32,21 +32,5 @@
         android:src="@drawable/heart_gif"
         android:contentDescription="@string/onboarding_item_2_gif"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/onboardingStartButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/dark"
-        android:contentDescription="@string/onboarding_item_2_start_button"
-        android:text="@string/start"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

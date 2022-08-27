@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.newspaper.R
+import com.example.newspaper.data.repositories.NewsRepository
+import com.example.newspaper.presentation.news.NewsViewModel
 
 
 class OnboardingFragmentNumberOne : Fragment() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="360dp"
-    android:layout_height="200dp"
-    android:layout_gravity="center_horizontal">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -15,13 +16,15 @@
         android:layout_gravity="center_horizontal"/>
 
     <EditText
+        android:id="@+id/usernameChangeEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Your new username"
+        android:hint="@string/profile_username_change_hint"
         android:fontFamily="@font/poppins_bold"
+        android:layout_marginTop="8dp"
         android:maxLength="24"
         android:textColor="@color/dark" />
 
@@ -31,8 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/okey"
         android:background="@color/dark"
         android:textColor="@color/white"/>
 
-</FrameLayout>
+</LinearLayout>

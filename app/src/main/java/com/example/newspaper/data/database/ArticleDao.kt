@@ -1,6 +1,8 @@
 package com.example.newspaper.data.database
 
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
+
 
 @Dao
 interface ArticleDao {
@@ -17,11 +19,11 @@ interface ArticleDao {
     @Delete
     suspend fun delete(article: Article)
 
-    @Query("SELECT * FROM Articles")
-    fun getAllArticles(): List<Article>
+    @Query("SELECT * FROM Articles ORDER BY publishedAt DESC")
+    fun getAllArticles(): Flow<List<Article>>
 
     @Query("SELECT * FROM Articles WHERE isFavorite = 1")
-    fun getAllFavoriteArticles(): List<Article>
+    fun getFavoriteArticles(): List<Article>
 
     @Query("SELECT * FROM Articles WHERE url = (:id)")
     fun getArticleById(id: String) : Article
@@ -36,6 +38,6 @@ interface ArticleDao {
     fun setArticleNonFavorite(id: String)
 
     @Query("SELECT * FROM Articles INNER JOIN ArticleHistory ON Articles.url = ArticleHistory.url")
-    fun getAllHistoryArticles(): List<Article>
+    fun getHistoryArticles(): List<Article>
 
 }

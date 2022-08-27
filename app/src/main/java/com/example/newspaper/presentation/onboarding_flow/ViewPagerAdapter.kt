@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-private const val NUM_PAGES = 2
+private const val NUM_PAGES = 3
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
 
@@ -14,6 +14,7 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter
         return when(position) {
             0 -> OnboardingFragmentNumberOne()
             1 -> OnboardingFragmentNumberTwo()
+            2 -> OnboardingFragmentNumberThree()
             else -> {
                 OnboardingFragmentNumberTwo()
             }

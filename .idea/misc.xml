@@ -27,8 +27,10 @@
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/ic_like.xml" value="0.348" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/ic_profile_filled.xml" value="0.31" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/ic_splashscreen.xml" value="0.31" />
+        <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/item_category_toggle.xml" value="0.2555" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/keyboard_arrow_up-48px.xml" value="0.34" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/profile_selector.xml" value="0.341" />
+        <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/rounded_category.xml" value="0.2555" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/rounded_linear_layout.xml" value="0.2985" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/speaker.xml" value="0.348" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/splashscreen.xml" value="0.1905" />
@@ -41,9 +43,11 @@
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/dialog_username_change.xml" value="0.30085470085470084" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/fragment_news.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/fragment_onboarding_number_one.xml" value="0.30085470085470084" />
+        <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/fragment_onboarding_number_three.xml" value="0.30085470085470084" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/fragment_onboarding_number_two.xml" value="0.25" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/full_activle_coord_layout.xml" value="0.25" />
+        <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/item_categories.xml" value="0.30085470085470084" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/item_news.xml" value="0.30085470085470084" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/item_profile.xml" value="0.25" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/news_list_item.xml" value="0.33" />
@@ -52,6 +56,9 @@
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/menu/main_menu.xml" value="0.275" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/mipmap-anydpi-v26/app_icon_new_round.xml" value="0.31" />
         <entry key="..\:/Users/Mikhail/AndroidStudioProjects/NewsPaper/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2985" />
+        <entry key="..\:/Users/Milkhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/item_category_toggle.xml" value="0.333" />
+        <entry key="..\:/Users/Milkhail/AndroidStudioProjects/NewsPaper/app/src/main/res/drawable/splashscreen.xml" value="0.333" />
+        <entry key="..\:/Users/Milkhail/AndroidStudioProjects/NewsPaper/app/src/main/res/layout/item_categories.xml" value="0.30085470085470084" />
       </map>
     </option>
   </component>

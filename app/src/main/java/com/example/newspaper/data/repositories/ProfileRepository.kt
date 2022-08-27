@@ -1,15 +1,17 @@
 package com.example.newspaper.data.repositories
 
 import com.example.newspaper.data.database.ArticleDatabase
+import com.example.newspaper.data.database.User
 import com.example.newspaper.data.repositories.models.ProfileCard
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ProfileRepository {
+private const val DEFAULT_USERNAME = "John Doe"
+private const val DEFAULT_IMAGE = ""
 
-    private val articleDatabase = ArticleDatabase.INSTANCE
-
-    private val userDao = articleDatabase.userDao()
+class ProfileRepository(
+    val articleDatabase: ArticleDatabase
+) {
 
     suspend fun getCards(): List<ProfileCard> {
         return withContext(Dispatchers.IO) {
@@ -17,9 +19,21 @@ class ProfileRepository {
         }
     }
 
-    suspend fun setUserImage(id: Int, image: String) {
+    suspend fun setUsername(username: String) {
         withContext(Dispatchers.IO) {
-            userDao.setUserImage(id = id, image = image)
+            articleDatabase.userDao().setUsername( username)
+        }
+    }
+
+    suspend fun getUsername(): String {
+        return withContext(Dispatchers.IO) {
+            articleDatabase.userDao().getUsername()
+        }
+    }
+
+    suspend fun setNewUser() {
+        withContext(Dispatchers.IO) {
+            articleDatabase.userDao().add(User(isCurrentUser = true, userImage = DEFAULT_IMAGE, username = DEFAULT_USERNAME))
         }
     }
 

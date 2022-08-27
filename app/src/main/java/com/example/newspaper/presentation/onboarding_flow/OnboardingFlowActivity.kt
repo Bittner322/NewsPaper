@@ -3,10 +3,13 @@ package com.example.newspaper.presentation.onboarding_flow
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
 import com.example.newspaper.databinding.ActivityOnboardingFlowBinding
+import com.example.newspaper.di.DiContainer
 import com.example.newspaper.presentation.main_activity.MainActivity
 
 private const val FIRST_LAUNCH = "firstLaunch"
@@ -18,6 +21,8 @@ class OnboardingFlowActivity : FragmentActivity() {
     private val binding: ActivityOnboardingFlowBinding
         get() = _binding!!
 
+    private val viewModel: OnboardingFlowViewModel by viewModels { DiContainer.onboardigFlowModule.viewModelFactory }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,6 +30,10 @@ class OnboardingFlowActivity : FragmentActivity() {
 
         _binding = ActivityOnboardingFlowBinding.inflate(layoutInflater)
         val view = binding.root
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.setNewUser()
+        }
 
         val sharedPref = MyApplication.applicationContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE)
 

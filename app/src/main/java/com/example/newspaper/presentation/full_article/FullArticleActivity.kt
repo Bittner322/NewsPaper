@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.example.newspaper.databinding.ActivityFullArticleBinding
+import com.example.newspaper.di.DiContainer
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -17,11 +18,8 @@ class FullArticleActivity : AppCompatActivity() {
     private val binding: ActivityFullArticleBinding
         get() = _binding!!
 
-    private val viewModel: FullArticleViewModel by viewModels {
-        FullArticleViewModelFactory(
-            url = intent.getStringExtra(INTENT_ARTICLE_ID).toString()
-        )
-    }
+    private val viewModel: FullArticleViewModel by viewModels { DiContainer.fullArticleModule(intent.getStringExtra(INTENT_ARTICLE_ID).toString()).viewModelFactory }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

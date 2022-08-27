@@ -4,14 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
 
-@Database(entities = [Article::class, ArticleHistory::class, User::class], version = 7, exportSchema = false)
+@Database(entities = [Article::class, ArticleHistory::class, User::class, Category::class], version = 10, exportSchema = false)
 abstract class ArticleDatabase: RoomDatabase() {
 
     abstract fun articleDao(): ArticleDao
     abstract fun historyDao(): ArticleHistoryDao
     abstract fun userDao(): UserDao
+    abstract fun categoryDao(): CategoryDao
 
     companion object {
 

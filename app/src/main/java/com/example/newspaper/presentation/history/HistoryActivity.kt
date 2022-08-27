@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.data.database.Article
 import com.example.newspaper.databinding.ActivityHistoryBinding
+import com.example.newspaper.di.DiContainer
 import com.example.newspaper.presentation.full_article.FullArticleActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -19,7 +20,7 @@ class HistoryActivity : AppCompatActivity() {
     private val binding: ActivityHistoryBinding
         get() = _binding!!
 
-    private val viewModel: HistoryViewModel by viewModels()
+    private val viewModel: HistoryViewModel by viewModels { DiContainer.historyActivityModule.viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

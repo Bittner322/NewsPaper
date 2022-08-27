@@ -3,58 +3,114 @@ package com.example.newspaper.data.repositories
 import com.example.newspaper.data.database.Article
 import com.example.newspaper.data.database.ArticleDatabase
 import com.example.newspaper.data.database.ArticleHistory
-import com.example.newspaper.data.network.NewsServiceFactory
+import com.example.newspaper.data.database.Category
+import com.example.newspaper.data.network.NewsService
+import com.example.newspaper.data.repositories.models.CategoryCard
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
-class NewsRepository {
+class NewsRepository(
+    val newsService: NewsService,
+    val articleDatabase: ArticleDatabase
+) {
 
-    private val newsService = NewsServiceFactory.newsService
-    private val articleDatabase = ArticleDatabase.INSTANCE
+
 
     private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     private val currentDate = Calendar.getInstance().apply {
         add(Calendar.MONTH, -1)
     }.time
 
-
     private val from = runCatching {
         simpleDateFormat.format(currentDate)
     }.getOrNull().orEmpty()
 
-    suspend fun getNews(): List<Article> {
+    suspend fun getCategoriesForRequest(): List<Category> {
         return withContext(Dispatchers.IO) {
-            articleDatabase.articleDao().getAllArticles()
+            articleDatabase.categoryDao().getCategories()
         }
+    }
+
+    suspend fun addCategoryIntoDatabase(category: Category) {
+        withContext(Dispatchers.IO) {
+            articleDatabase.categoryDao().add(category)
+        }
+    }
+
+    suspend fun deleteCategoryFromDatabase(category: Category) {
+        withContext(Dispatchers.IO) {
+            articleDatabase.categoryDao().delete(category)
+        }
+    }
+
+    fun getNewsFlow(): Flow<List<Article>> {
+        return articleDatabase.articleDao().getAllArticles()
     }
 
     suspend fun getFavoriteArticles(): List<Article> {
         return withContext(Dispatchers.IO) {
-            articleDatabase.articleDao().getAllFavoriteArticles()
+            articleDatabase.articleDao().getFavoriteArticles()
         }
     }
 
-    suspend fun loadAllArticlesIntoDatabase() {
+    suspend fun loadAllArticlesIntoDatabase(): Result<Unit> {
+        return runCatching {
+            val newsFromNetwork = mapNews()
+            articleDatabase.articleDao().insertAll(newsFromNetwork)
+        }
+    }
 
-        articleDatabase.articleDao().insertAll(newsService.getNews(from = from).articles.map {
+    private suspend fun mapNews(): List<Article> {
+        val mappedItems = newsService.getNews(from = from).articles.map {
             Article(
                 it.author.orEmpty(),
                 it.title.orEmpty(),
                 it.description.orEmpty(),
                 it.url,
                 it.urlToImage.orEmpty(),
-                simpleDateFormat.parse(it.publishedAt).time,
+                simpleDateFormat.parse(it.publishedAt)?.time ?: currentDate.time,
                 it.content,
                 isFavorite = false
             )
-        })
+        }
+        return mappedItems
+    }
+
+    suspend fun loadCategorizedNewsIntoDatabase(): Result<Unit> {
+        return runCatching {
+            val categorizedNews = mapCategorizedNews()
+            articleDatabase.articleDao().insertAll(categorizedNews)
+        }
+    }
+
+    private suspend fun mapCategorizedNews(): List<Article> {
+        val mappedNews = newsService.getNewsByCategories(category = getChosenCategories()).articles.map {
+            Article(
+                it.author.orEmpty(),
+                it.title.orEmpty(),
+                it.description.orEmpty(),
+                it.url,
+                it.urlToImage.orEmpty(),
+                simpleDateFormat.parse(it.publishedAt)?.time ?: currentDate.time,
+                it.content,
+                isFavorite = false
+            )
+        }
+        return mappedNews
+    }
+
+    suspend fun getCategories(): List<CategoryCard> {
+        return withContext(Dispatchers.IO) {
+            CategoryCard.values().toList()
+        }
     }
 
     suspend fun getHistoryArticles(): List<Article> {
         return withContext(Dispatchers.IO) {
-            articleDatabase.articleDao().getAllHistoryArticles()
+            articleDatabase.articleDao().getHistoryArticles()
         }
     }
 
@@ -79,6 +135,12 @@ class NewsRepository {
     suspend fun setArticleNonFavorite(article: Article) {
         withContext(Dispatchers.IO) {
             articleDatabase.articleDao().setArticleNonFavorite(article.url)
+        }
+    }
+
+    suspend fun getChosenCategories(): List<Category> {
+        return withContext(Dispatchers.IO) {
+            articleDatabase.categoryDao().getCategories()
         }
     }
 

@@ -1,18 +1,45 @@
 package com.example.newspaper.presentation.dialogs
 
-import android.app.AlertDialog
-import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import com.example.newspaper.R
+import com.example.newspaper.databinding.DialogUsernameChangeBinding
+import com.example.newspaper.di.DiContainer
 
 class UsernameChangeDialog: DialogFragment() {
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return activity?.let {
-            val builder = AlertDialog.Builder(it)
-                .setView(R.layout.dialog_username_change)
-            builder.create()
-        } ?: throw IllegalStateException("Activity cannot be null")
+    private var _binding: DialogUsernameChangeBinding? = null
+    private val binding: DialogUsernameChangeBinding
+        get() = _binding!!
+
+    private val viewModel: UsernameChangeDialogViewModel by viewModels { DiContainer.usernameChangeDialogModule.viewModelFactory }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setStyle(STYLE_NO_TITLE, R.style.DefaultDialogTheme)
     }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+
+        _binding = DialogUsernameChangeBinding.inflate(layoutInflater)
+
+        binding.dialogUsernameChangeOkButton.setOnClickListener {
+            if(binding.usernameChangeEditText.length() != 0) {
+                viewModel.setUsername(binding.usernameChangeEditText.text.toString())
+            }
+        }
+
+        return binding.root
+    }
+
+
 }

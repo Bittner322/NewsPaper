@@ -13,10 +13,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class FullArticleViewModel(
-    private val url: String
+    private val url: String,
+    private val database: ArticleDatabase
 ): ViewModel() {
-
-    private val database = ArticleDatabase.INSTANCE
 
     val titleStateFlow = MutableStateFlow("")
     val authorStateFlow = MutableStateFlow("")
@@ -52,11 +51,12 @@ class FullArticleViewModel(
 }
 
 class FullArticleViewModelFactory(
-    private val url: String
+    private val url: String,
+    private val database: ArticleDatabase
 ): ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return FullArticleViewModel(url) as T
+        return FullArticleViewModel(url, database) as T
     }
 }

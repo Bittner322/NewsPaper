@@ -11,7 +11,7 @@ import com.example.newspaper.R
 import com.example.newspaper.data.repositories.models.ProfileCard
 
 class ProfileRecyclerAdapter(
-    private val onItemClick: (ProfileCard) -> Unit
+    private val onItemClick: (ProfileCard) -> Unit,
 ): RecyclerView.Adapter<ProfileRecyclerAdapter.ViewHolder>() {
 
     private val data = mutableListOf<ProfileCard>()
