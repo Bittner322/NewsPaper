@@ -1,19 +1,31 @@
 package com.example.newspaper.di
 
+import com.example.newspaper.data.database.ArticleDatabase
+import com.example.newspaper.data.network.NewsService
 import com.example.newspaper.data.repositories.NewsRepository
 import com.example.newspaper.presentation.onboarding_flow.CategoryFragmentViewModelFactory
+import dagger.Module
+import dagger.Provides
+import javax.inject.Inject
 
-class CategoryFragmentModule(
-    networkModule: NetworkModule,
-    databaseModule: DatabaseModule,
-) {
+@Module(includes = [NetworkModule::class, DatabaseModule::class])
+class CategoryFragmentModule {
 
-    private val newsRepository = NewsRepository(
-        newsService = networkModule.newsService,
-        articleDatabase = databaseModule.articleDatabase
-    )
+    @Provides
+    fun provideNewsRepository(
+        newsService: NewsService,
+        articleDatabase: ArticleDatabase
+    ): NewsRepository {
+        return NewsRepository(
+            newsService = newsService,
+            articleDatabase = articleDatabase,
+        )
+    }
 
-    val viewModelFactory = CategoryFragmentViewModelFactory(
-        repository = newsRepository
-    )
+    @Provides
+    fun provideViewModelFactory(newsRepository: NewsRepository): CategoryFragmentViewModelFactory {
+        return CategoryFragmentViewModelFactory(
+            repository = newsRepository
+        )
+    }
 }

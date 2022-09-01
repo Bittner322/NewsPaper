@@ -21,7 +21,7 @@ class OnboardingFlowActivity : FragmentActivity() {
     private val binding: ActivityOnboardingFlowBinding
         get() = _binding!!
 
-    private val viewModel: OnboardingFlowViewModel by viewModels { DiContainer.onboardigFlowModule.viewModelFactory }
+    private val viewModel: OnboardingFlowViewModel by viewModels { DiContainer.onboardingFlowModule.viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

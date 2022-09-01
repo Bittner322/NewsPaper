@@ -1,17 +1,25 @@
 package com.example.newspaper.di
 
+import com.example.newspaper.data.database.ArticleDatabase
 import com.example.newspaper.data.repositories.ProfileRepository
 import com.example.newspaper.presentation.profile.ProfileViewModelFactory
+import dagger.Module
+import dagger.Provides
 
-class ProfileFragmentModule(
-    databaseModule: DatabaseModule,
-) {
+@Module(includes = [DatabaseModule::class])
+class ProfileFragmentModule {
 
-    private val profileRepository = ProfileRepository(
-        articleDatabase = databaseModule.articleDatabase
-    )
+    @Provides
+    fun provideProfileRepository(articleDatabase: ArticleDatabase): ProfileRepository {
+        return ProfileRepository(
+            articleDatabase = articleDatabase
+        )
+    }
 
-    val viewModelFactory = ProfileViewModelFactory(
-        repository = profileRepository
-    )
+    @Provides
+    fun provideViewModelFactory(profileRepository: ProfileRepository): ProfileViewModelFactory {
+        return ProfileViewModelFactory(
+            repository = profileRepository
+        )
+    }
 }

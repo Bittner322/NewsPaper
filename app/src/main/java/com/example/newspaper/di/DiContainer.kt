@@ -11,6 +11,6 @@ object DiContainer {
     val historyActivityModule = HistoryActivityModule(networkModule, databaseModule)
     val usernameChangeDialogModule = UsernameChangeDialogModule(databaseModule)
     val categoryFragmentModule = CategoryFragmentModule(networkModule, databaseModule)
-    val onboardigFlowModule = OnboardigFlowModule(databaseModule)
+    val onboardingFlowModule = OnboardingFlowModule(databaseModule)
 
 }

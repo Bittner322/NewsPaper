@@ -1,20 +1,31 @@
 package com.example.newspaper.di
 
+import com.example.newspaper.data.database.ArticleDatabase
+import com.example.newspaper.data.network.NewsService
 import com.example.newspaper.data.repositories.NewsRepository
 import com.example.newspaper.presentation.history.HistoryActivityModelFactory
+import dagger.Module
+import dagger.Provides
 
-class HistoryActivityModule(
-    networkModule: NetworkModule,
-    databaseModule: DatabaseModule,
-) {
+@Module(includes = [NetworkModule::class, DatabaseModule::class])
+class HistoryActivityModule {
 
-    private val newsRepository = NewsRepository(
-        newsService = networkModule.newsService,
-        articleDatabase = databaseModule.articleDatabase
-    )
+    @Provides
+    fun provideNewsRepository(
+        newsService: NewsService,
+        articleDatabase: ArticleDatabase
+    ): NewsRepository {
+        return NewsRepository(
+            newsService = newsService,
+            articleDatabase = articleDatabase
+        )
+    }
 
-    val viewModelFactory = HistoryActivityModelFactory(
-        repository = newsRepository
-    )
+    @Provides
+    fun provideViewModelFactory(newsRepository: NewsRepository): HistoryActivityModelFactory {
+        return HistoryActivityModelFactory(
+            repository = newsRepository
+        )
+    }
 
 }

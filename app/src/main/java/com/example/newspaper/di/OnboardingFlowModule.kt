@@ -2,12 +2,12 @@ package com.example.newspaper.di
 
 import com.example.newspaper.data.database.ArticleDatabase
 import com.example.newspaper.data.repositories.ProfileRepository
-import com.example.newspaper.presentation.dialogs.UsernameChangeDialogModelFactory
+import com.example.newspaper.presentation.onboarding_flow.OnboardingFlowViewModelFactory
 import dagger.Module
 import dagger.Provides
 
 @Module(includes = [DatabaseModule::class])
-class UsernameChangeDialogModule{
+class OnboardingFlowModule {
 
     @Provides
     fun provideProfileRepository(articleDatabase: ArticleDatabase): ProfileRepository {
@@ -16,10 +16,10 @@ class UsernameChangeDialogModule{
         )
     }
 
-    fun provideViewModelFactory(profileRepository: ProfileRepository): UsernameChangeDialogModelFactory {
-        return UsernameChangeDialogModelFactory(
+    @Provides
+    fun provideViewModelFactory(profileRepository: ProfileRepository): OnboardingFlowViewModelFactory {
+        return OnboardingFlowViewModelFactory(
             repository = profileRepository
         )
     }
 }
-

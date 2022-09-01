@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.devtools.ksp'
     id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -38,6 +39,10 @@ android {
 }
 
 dependencies {
+
+    //dagger
+    implementation 'com.google.dagger:dagger:2.43.2'
+    kapt 'com.google.dagger:dagger-compiler:2.43.2'
 
     //scrollingPagerIndicator
     implementation "com.tbuonomo:dotsindicator:4.3"

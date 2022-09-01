@@ -15,16 +15,26 @@ import com.example.newspaper.di.DiContainer
 import com.example.newspaper.presentation.full_article.FullArticleActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
 private const val INTENT_ARTICLE_ID = "articleId"
 
 class NewsFragment : Fragment() {
 
-    private val viewModel: NewsViewModel by viewModels { DiContainer.newsFragmentModule.viewModelFactory }
+
+    lateinit var viewModelFactory: NewsViewModelFactory
+
+    private val viewModel: NewsViewModel by viewModels { viewModelFactory }
 
     private var _binding: FragmentNewsBinding? = null
     private val binding: FragmentNewsBinding
         get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
