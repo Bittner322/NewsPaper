@@ -8,15 +8,19 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.example.newspaper.R
 import com.example.newspaper.databinding.DialogUsernameChangeBinding
-import com.example.newspaper.di.DiContainer
+import javax.inject.Inject
 
 class UsernameChangeDialog: DialogFragment() {
+
+    @Inject
+    lateinit var viewModelFactory: UsernameChangeDialogModelFactory
+
+    private val viewModel: UsernameChangeDialogViewModel by viewModels { viewModelFactory }
 
     private var _binding: DialogUsernameChangeBinding? = null
     private val binding: DialogUsernameChangeBinding
         get() = _binding!!
 
-    private val viewModel: UsernameChangeDialogViewModel by viewModels { DiContainer.usernameChangeDialogModule.viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

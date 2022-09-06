@@ -1,5 +1,6 @@
 package com.example.newspaper.di
 
+import com.example.newspaper.presentation.news.NewsFragment
 import dagger.Component
 
 @Component(modules = [
@@ -14,6 +15,6 @@ import dagger.Component
 ])
 interface AppComponent {
 
-
+    fun inject(fragment: NewsFragment)
 
 }

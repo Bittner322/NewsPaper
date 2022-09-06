@@ -2,26 +2,30 @@ package com.example.newspaper.presentation.profile
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.data.repositories.models.ProfileCard
 import com.example.newspaper.databinding.FragmentProfileBinding
-import com.example.newspaper.di.DiContainer
 import com.example.newspaper.presentation.dialogs.UsernameChangeDialog
 import com.example.newspaper.presentation.faq.FaqActivity
 import com.example.newspaper.presentation.favorite_articles.FavoriteArticleActivity
 import com.example.newspaper.presentation.history.HistoryActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
 class ProfileFragment : Fragment() {
 
-    private val profileViewModel: ProfileViewModel by viewModels { DiContainer.profileFragmentModule.viewModelFactory }
+    @Inject
+    lateinit var viewModelFactory: ProfileViewModelFactory
 
+    private val profileViewModel: ProfileViewModel by viewModels { viewModelFactory }
+
+    
     private var _binding: FragmentProfileBinding? = null
     private val binding: FragmentProfileBinding
         get() = _binding!!

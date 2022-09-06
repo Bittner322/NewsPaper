@@ -7,16 +7,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.data.database.Article
 import com.example.newspaper.databinding.ActivityFavoriteArticleBinding
-import com.example.newspaper.di.DiContainer
 import com.example.newspaper.presentation.full_article.FullArticleActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
 private const val INTENT_ARTICLE_ID = "articleId"
 
 class FavoriteArticleActivity : AppCompatActivity() {
 
-    private val viewModel: FavoriteArticleViewModel by viewModels { DiContainer.favoriteArticleModule.viewModelFactory }
+    @Inject
+    lateinit var viewModelFactory: FavoriteArticleViewModelFactory
+
+    private val viewModel: FavoriteArticleViewModel by viewModels { viewModelFactory }
 
     private var _binding: ActivityFavoriteArticleBinding? = null
     private val binding: ActivityFavoriteArticleBinding

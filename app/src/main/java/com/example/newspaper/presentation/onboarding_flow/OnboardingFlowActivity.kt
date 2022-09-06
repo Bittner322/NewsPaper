@@ -9,8 +9,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
 import com.example.newspaper.databinding.ActivityOnboardingFlowBinding
-import com.example.newspaper.di.DiContainer
 import com.example.newspaper.presentation.main_activity.MainActivity
+import javax.inject.Inject
 
 private const val FIRST_LAUNCH = "firstLaunch"
 private const val PREFS = "prefs"
@@ -21,7 +21,11 @@ class OnboardingFlowActivity : FragmentActivity() {
     private val binding: ActivityOnboardingFlowBinding
         get() = _binding!!
 
-    private val viewModel: OnboardingFlowViewModel by viewModels { DiContainer.onboardingFlowModule.viewModelFactory }
+    @Inject
+    lateinit var viewModelFactory: OnboardingFlowViewModelFactory
+
+    private val viewModel: OnboardingFlowViewModel by viewModels { viewModelFactory }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

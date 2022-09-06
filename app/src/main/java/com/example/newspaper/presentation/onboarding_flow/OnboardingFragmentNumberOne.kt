@@ -1,15 +1,11 @@
 package com.example.newspaper.presentation.onboarding_flow
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import com.example.newspaper.R
-import com.example.newspaper.data.repositories.NewsRepository
-import com.example.newspaper.presentation.news.NewsViewModel
 
 
 class OnboardingFragmentNumberOne : Fragment() {

@@ -14,10 +14,10 @@ import com.example.newspaper.MyApplication
 import com.example.newspaper.data.database.Category
 import com.example.newspaper.data.repositories.models.CategoryCard
 import com.example.newspaper.databinding.FragmentOnboardingNumberThreeBinding
-import com.example.newspaper.di.DiContainer
 import com.example.newspaper.presentation.main_activity.MainActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
 private const val FIRST_LAUNCH = "firstLaunch"
 private const val PREFS = "prefs"
@@ -28,7 +28,11 @@ class OnboardingFragmentNumberThree : Fragment() {
     private val binding: FragmentOnboardingNumberThreeBinding
         get() = _binding!!
 
-    private val viewModel: CategoryFragmentViewModel by viewModels  { DiContainer.categoryFragmentModule.viewModelFactory }
+    @Inject
+    lateinit var viewModelFactory: CategoryFragmentViewModelFactory
+
+    private val viewModel: CategoryFragmentViewModel by viewModels { viewModelFactory }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
