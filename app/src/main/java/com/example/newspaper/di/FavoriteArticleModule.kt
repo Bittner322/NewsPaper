@@ -10,16 +10,7 @@ import dagger.Provides
 @Module(includes = [NetworkModule::class, DatabaseModule::class])
 class FavoriteArticleModule {
 
-    @Provides
-    fun provideNewsRepository(
-        newsService: NewsService,
-        articleDatabase: ArticleDatabase
-    ): NewsRepository {
-        return NewsRepository(
-            newsService = newsService,
-            articleDatabase = articleDatabase,
-        )
-    }
+
 
     @Provides
     fun provideViewModelFactory(newsRepository: NewsRepository): FavoriteArticleViewModelFactory {

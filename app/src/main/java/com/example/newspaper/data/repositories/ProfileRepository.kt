@@ -5,11 +5,12 @@ import com.example.newspaper.data.database.User
 import com.example.newspaper.data.repositories.models.ProfileCard
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 private const val DEFAULT_USERNAME = "John Doe"
 private const val DEFAULT_IMAGE = ""
 
-class ProfileRepository(
+class ProfileRepository @Inject constructor(
     val articleDatabase: ArticleDatabase
 ) {
 

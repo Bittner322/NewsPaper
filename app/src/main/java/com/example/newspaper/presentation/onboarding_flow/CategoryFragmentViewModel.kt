@@ -9,6 +9,7 @@ import com.example.newspaper.data.repositories.models.CategoryCard
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class CategoryFragmentViewModel(
     private val repository: NewsRepository
@@ -37,7 +38,7 @@ class CategoryFragmentViewModel(
     }
 }
 
-class CategoryFragmentViewModelFactory(
+class CategoryFragmentViewModelFactory @Inject constructor(
     private val repository: NewsRepository
 ): ViewModelProvider.Factory {
 

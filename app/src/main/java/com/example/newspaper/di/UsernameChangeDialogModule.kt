@@ -9,12 +9,7 @@ import dagger.Provides
 @Module(includes = [DatabaseModule::class])
 class UsernameChangeDialogModule{
 
-    @Provides
-    fun provideProfileRepository(articleDatabase: ArticleDatabase): ProfileRepository {
-        return ProfileRepository(
-            articleDatabase = articleDatabase
-        )
-    }
+
 
     fun provideViewModelFactory(profileRepository: ProfileRepository): UsernameChangeDialogModelFactory {
         return UsernameChangeDialogModelFactory(

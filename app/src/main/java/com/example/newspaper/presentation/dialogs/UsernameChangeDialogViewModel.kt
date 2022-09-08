@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.newspaper.data.repositories.ProfileRepository
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class UsernameChangeDialogViewModel(
    private val repository: ProfileRepository
@@ -16,7 +17,7 @@ class UsernameChangeDialogViewModel(
         }
     }
 }
-class UsernameChangeDialogModelFactory(
+class UsernameChangeDialogModelFactory @Inject constructor(
     private val repository: ProfileRepository
 ): ViewModelProvider.Factory {
 

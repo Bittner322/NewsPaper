@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.newspaper.MyApplication
 import com.example.newspaper.data.database.Article
 import com.example.newspaper.databinding.FragmentNewsBinding
 import com.example.newspaper.presentation.full_article.FullArticleActivity
@@ -32,7 +33,7 @@ class NewsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        MyApplication.appComponent.inject(this)
     }
 
     override fun onCreateView(

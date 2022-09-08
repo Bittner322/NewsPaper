@@ -9,12 +9,7 @@ import dagger.Provides
 @Module(includes = [DatabaseModule::class])
 class OnboardingFlowModule {
 
-    @Provides
-    fun provideProfileRepository(articleDatabase: ArticleDatabase): ProfileRepository {
-        return ProfileRepository(
-            articleDatabase = articleDatabase
-        )
-    }
+
 
     @Provides
     fun provideViewModelFactory(profileRepository: ProfileRepository): OnboardingFlowViewModelFactory {

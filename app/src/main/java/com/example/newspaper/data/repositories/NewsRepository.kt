@@ -11,10 +11,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-class NewsRepository(
-    val newsService: NewsService,
-    val articleDatabase: ArticleDatabase
+class NewsRepository @Inject constructor(
+    private val newsService: NewsService,
+    private val articleDatabase: ArticleDatabase
 ) {
 
 

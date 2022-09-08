@@ -8,6 +8,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 import retrofit2.create
+import javax.inject.Singleton
 
 @Module
 class NetworkModule {
@@ -15,7 +16,8 @@ class NetworkModule {
     private val contentType = "application/json".toMediaType()
 
     @Provides
-    private fun provideRetrofit(): Retrofit {
+    @Singleton
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://newsapi.org/v2/")
             .addConverterFactory(Json.asConverterFactory(contentType))
@@ -23,6 +25,7 @@ class NetworkModule {
     }
 
     @Provides
+    @Singleton
     fun provideNewsService(retrofit: Retrofit): NewsService {
         return retrofit.create()
     }
