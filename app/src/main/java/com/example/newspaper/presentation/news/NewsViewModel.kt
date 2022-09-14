@@ -7,6 +7,7 @@ import com.example.newspaper.data.database.Article
 import com.example.newspaper.data.repositories.NewsRepository
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class NewsViewModel(
     private val repository: NewsRepository
@@ -56,7 +57,7 @@ class NewsViewModel(
 
 }
 
-class NewsViewModelFactory(
+class NewsViewModelFactory @Inject constructor(
     private val repository: NewsRepository
 ): ViewModelProvider.Factory {
 

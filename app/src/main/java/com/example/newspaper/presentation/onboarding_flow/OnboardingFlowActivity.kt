@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
 import com.example.newspaper.databinding.ActivityOnboardingFlowBinding
+import com.example.newspaper.di.DaggerOnboardingFlowFragmentActivity
 import com.example.newspaper.presentation.main_activity.MainActivity
 import javax.inject.Inject
 
@@ -26,11 +27,19 @@ class OnboardingFlowActivity : FragmentActivity() {
 
     private val viewModel: OnboardingFlowViewModel by viewModels { viewModelFactory }
 
+    private val daggerComponentKey = "OnboardingFlowActivity"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        installSplashScreen()
+        MyApplication.provideComponent(daggerComponentKey) {
+            DaggerOnboardingFlowFragmentActivity.factory().create(
+                appComponent = MyApplication.appComponent
+            )
+        }.inject(this)
+
+        //installSplashScreen()
 
         _binding = ActivityOnboardingFlowBinding.inflate(layoutInflater)
         val view = binding.root

@@ -8,6 +8,7 @@ import com.example.newspaper.data.repositories.NewsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class HistoryViewModel(
     private val repository: NewsRepository
@@ -32,7 +33,7 @@ class HistoryViewModel(
     }
 }
 
-class HistoryActivityModelFactory(
+class HistoryActivityModelFactory @Inject constructor(
     private val repository: NewsRepository
 ): ViewModelProvider.Factory {
 

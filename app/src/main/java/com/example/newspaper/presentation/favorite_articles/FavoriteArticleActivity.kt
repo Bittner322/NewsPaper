@@ -5,8 +5,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.newspaper.MyApplication
 import com.example.newspaper.data.database.Article
 import com.example.newspaper.databinding.ActivityFavoriteArticleBinding
+import com.example.newspaper.di.DaggerFavoriteArticleActivityComponent
 import com.example.newspaper.presentation.full_article.FullArticleActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -21,12 +23,20 @@ class FavoriteArticleActivity : AppCompatActivity() {
 
     private val viewModel: FavoriteArticleViewModel by viewModels { viewModelFactory }
 
+    private val daggerComponentKey = "FavoriteArticleActivity"
+
     private var _binding: ActivityFavoriteArticleBinding? = null
     private val binding: ActivityFavoriteArticleBinding
         get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        MyApplication.provideComponent(daggerComponentKey) {
+            DaggerFavoriteArticleActivityComponent.factory().create(
+                appComponent = MyApplication.appComponent
+            )
+        }.inject(this)
 
         _binding = ActivityFavoriteArticleBinding.inflate(layoutInflater)
         val view = binding.root

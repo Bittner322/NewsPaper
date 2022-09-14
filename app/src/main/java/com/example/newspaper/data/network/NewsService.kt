@@ -4,13 +4,13 @@ import com.example.newspaper.data.database.Category
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface NewsService{
+interface NewsService {
 
     @GET("everything")
     suspend fun getNews(
-        @Query("q") q: String = "tesla",
+        @Query("q") q: String = "Тесла",
         @Query("from") from: String = "",
-        @Query("language") language: String = "en",
+        @Query("language") language: String = "ru",
         @Query("sortBy") sortBy : String = "publishedAt",
         @Query("apiKey") apiKey : String = "a5d65121640a45d99c48715b67299a36",
     ) : NewsResponse

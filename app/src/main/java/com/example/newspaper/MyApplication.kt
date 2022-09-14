@@ -1,5 +1,6 @@
 package com.example.newspaper
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import com.example.newspaper.data.database.ArticleDatabase
@@ -14,9 +15,26 @@ class MyApplication: Application() {
         lateinit var appComponent: AppComponent
             private set
 
+        private val components: MutableMap<String, Any> = mutableMapOf()
+
         fun applicationContext(): Context {
             return instance.applicationContext
         }
+
+        @Suppress("UNCHECKED_CAST")
+        fun <T: Any> provideComponent(key: String, factory: () -> T): T {
+            val component = components[key] ?: run {
+                val newComponent = factory.invoke()
+                components[key] = newComponent
+                newComponent
+            }
+            return component as T
+        }
+
+        fun clearComponent(key: String) {
+            components.remove(key)
+        }
+
     }
 
     override fun onCreate() {

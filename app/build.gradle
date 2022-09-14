@@ -40,9 +40,16 @@ android {
 
 dependencies {
 
+    def daggerVer = "2.43.2"
+
+    implementation "com.google.dagger:dagger:$daggerVer"
+    implementation "com.google.dagger:dagger-android-support:$daggerVer"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVer"
+    kapt "com.google.dagger:dagger-compiler:$daggerVer"
+
     //dagger
-    implementation 'com.google.dagger:dagger:2.43.2'
-    kapt 'com.google.dagger:dagger-compiler:2.43.2'
+    //implementation 'com.google.dagger:dagger:2.43.2'
+    //kapt 'com.google.dagger:dagger-compiler:2.43.2'
 
     //scrollingPagerIndicator
     implementation "com.tbuonomo:dotsindicator:4.3"

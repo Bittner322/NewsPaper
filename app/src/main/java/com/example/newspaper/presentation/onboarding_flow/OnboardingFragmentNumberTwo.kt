@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.newspaper.databinding.FragmentOnboardingNumberTwoBinding
 
-
-
 class OnboardingFragmentNumberTwo : Fragment() {
 
     private var _binding: FragmentOnboardingNumberTwoBinding? = null

@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class ProfileViewModel(
     private val repository: ProfileRepository
@@ -35,7 +36,7 @@ class ProfileViewModel(
     }
 }
 
-class ProfileViewModelFactory(
+class ProfileViewModelFactory @Inject constructor(
     private val repository: ProfileRepository
 ): ViewModelProvider.Factory {
 

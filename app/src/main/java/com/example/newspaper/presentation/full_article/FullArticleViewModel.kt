@@ -5,12 +5,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.newspaper.R
 import com.example.newspaper.data.database.ArticleDatabase
+import dagger.Component.Factory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 class FullArticleViewModel(
     private val url: String,
@@ -50,7 +52,7 @@ class FullArticleViewModel(
     }
 }
 
-class FullArticleViewModelFactory(
+class FullArticleViewModelFactory @Inject constructor(
     private val url: String,
     private val database: ArticleDatabase
 ): ViewModelProvider.Factory {

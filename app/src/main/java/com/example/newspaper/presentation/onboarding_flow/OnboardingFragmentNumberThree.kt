@@ -14,6 +14,7 @@ import com.example.newspaper.MyApplication
 import com.example.newspaper.data.database.Category
 import com.example.newspaper.data.repositories.models.CategoryCard
 import com.example.newspaper.databinding.FragmentOnboardingNumberThreeBinding
+import com.example.newspaper.di.DaggerOnboardingFragmentNumberThreeComponent
 import com.example.newspaper.presentation.main_activity.MainActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -33,6 +34,17 @@ class OnboardingFragmentNumberThree : Fragment() {
 
     private val viewModel: CategoryFragmentViewModel by viewModels { viewModelFactory }
 
+    private val daggerComponentKey = "OnboardingFragmentNumberThree"
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        MyApplication.provideComponent(daggerComponentKey) {
+            DaggerOnboardingFragmentNumberThreeComponent.factory().create(
+                appComponent = MyApplication.appComponent
+            )
+        }.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

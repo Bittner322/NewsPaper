@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.ToggleButton
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newspaper.R
 import com.example.newspaper.data.database.Article
@@ -51,19 +52,12 @@ class NewsRecyclerAdapter(
 
             titleTextView.text = item.title
 
-            if(item.author.isEmpty()) {
-                authorTextView.visibility = View.GONE
-            }
-            else {
-                authorTextView.text = item.author
-            }
+            authorTextView.isVisible = item.author.isNotBlank()
+            authorTextView.text = item.author
 
-            if(item.description.isEmpty()) {
-                contentTextView.visibility = View.GONE
-            }
-            else {
-                contentTextView.text = item.description
-            }
+            contentTextView.isVisible = item.description.isNotBlank()
+            contentTextView.text = item.description
+
 
             favoriteToggle.isChecked = item.isFavorite
         }

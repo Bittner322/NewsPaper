@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.newspaper.MyApplication
 import com.example.newspaper.data.repositories.models.ProfileCard
 import com.example.newspaper.databinding.FragmentProfileBinding
+import com.example.newspaper.di.DaggerProfileFragmentComponent
 import com.example.newspaper.presentation.dialogs.UsernameChangeDialog
 import com.example.newspaper.presentation.faq.FaqActivity
 import com.example.newspaper.presentation.favorite_articles.FavoriteArticleActivity
@@ -25,6 +27,8 @@ class ProfileFragment : Fragment() {
 
     private val profileViewModel: ProfileViewModel by viewModels { viewModelFactory }
 
+    private val daggerComponentKey = "ProfileFragment"
+
     
     private var _binding: FragmentProfileBinding? = null
     private val binding: FragmentProfileBinding
@@ -33,7 +37,11 @@ class ProfileFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        MyApplication.provideComponent(daggerComponentKey) {
+            DaggerProfileFragmentComponent.factory().create(
+                appComponent = MyApplication.appComponent
+            )
+        }.inject(this)
     }
 
     override fun onCreateView(

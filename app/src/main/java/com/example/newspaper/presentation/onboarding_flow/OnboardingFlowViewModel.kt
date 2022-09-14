@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.newspaper.data.repositories.ProfileRepository
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class OnboardingFlowViewModel(
     private val repository: ProfileRepository
@@ -16,7 +17,8 @@ class OnboardingFlowViewModel(
         }
     }
 }
-class OnboardingFlowViewModelFactory(
+
+class OnboardingFlowViewModelFactory @Inject constructor(
     private val repository: ProfileRepository
 ): ViewModelProvider.Factory {
 

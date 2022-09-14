@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import com.example.newspaper.MyApplication
 import com.example.newspaper.R
 import com.example.newspaper.databinding.DialogUsernameChangeBinding
+import com.example.newspaper.di.DaggerUsernameChangeDialogComponent
 import javax.inject.Inject
 
 class UsernameChangeDialog: DialogFragment() {
@@ -17,6 +19,8 @@ class UsernameChangeDialog: DialogFragment() {
 
     private val viewModel: UsernameChangeDialogViewModel by viewModels { viewModelFactory }
 
+    private val daggerComponentKey = "UsernameChangeDialog"
+
     private var _binding: DialogUsernameChangeBinding? = null
     private val binding: DialogUsernameChangeBinding
         get() = _binding!!
@@ -25,7 +29,14 @@ class UsernameChangeDialog: DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        MyApplication.provideComponent(daggerComponentKey) {
+            DaggerUsernameChangeDialogComponent.factory().create(
+                appComponent = MyApplication.appComponent
+            )
+        }.inject(this)
+
         setStyle(STYLE_NO_TITLE, R.style.DefaultDialogTheme)
+
     }
 
     override fun onCreateView(

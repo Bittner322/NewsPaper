@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
 import com.example.newspaper.data.database.Article
 import com.example.newspaper.databinding.FragmentNewsBinding
+import com.example.newspaper.di.DaggerNewsFragmentComponent
 import com.example.newspaper.presentation.full_article.FullArticleActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -26,6 +27,8 @@ class NewsFragment : Fragment() {
 
     private val viewModel: NewsViewModel by viewModels { viewModelFactory }
 
+    private val daggerComponentKey = "NewsFragment"
+
     private var _binding: FragmentNewsBinding? = null
     private val binding: FragmentNewsBinding
         get() = _binding!!
@@ -33,7 +36,11 @@ class NewsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        MyApplication.appComponent.inject(this)
+        MyApplication.provideComponent(daggerComponentKey) {
+            DaggerNewsFragmentComponent.factory().create(
+                appComponent = MyApplication.appComponent
+            )
+        }.inject(this)
     }
 
     override fun onCreateView(

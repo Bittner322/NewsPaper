@@ -8,6 +8,7 @@ import com.example.newspaper.data.repositories.NewsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class FavoriteArticleViewModel(
     private val repository: NewsRepository
@@ -36,7 +37,7 @@ class FavoriteArticleViewModel(
     }
 }
 
-class FavoriteArticleViewModelFactory(
+class FavoriteArticleViewModelFactory @Inject constructor(
     private val repository: NewsRepository
 ): ViewModelProvider.Factory {
 
