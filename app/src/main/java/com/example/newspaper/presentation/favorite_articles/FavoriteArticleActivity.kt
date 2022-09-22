@@ -73,4 +73,11 @@ class FavoriteArticleActivity : AppCompatActivity() {
     private fun onToggleNonCheckClick(article: Article) {
         viewModel.setArticleNonFavorite(article)
     }
+
+    override fun onDestroy() {
+        if (!isChangingConfigurations) {
+            MyApplication.clearComponent(daggerComponentKey)
+        }
+        super.onDestroy()
+    }
 }

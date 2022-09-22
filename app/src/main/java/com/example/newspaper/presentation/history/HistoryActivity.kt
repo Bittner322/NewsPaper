@@ -64,4 +64,11 @@ class HistoryActivity : AppCompatActivity() {
         toFullArticleActivityIntent.putExtra(INTENT_ARTICLE_ID, article.url)
         startActivity(toFullArticleActivityIntent)
     }
+
+    override fun onDestroy() {
+        if (!isChangingConfigurations) {
+            MyApplication.clearComponent(daggerComponentKey)
+        }
+        super.onDestroy()
+    }
 }

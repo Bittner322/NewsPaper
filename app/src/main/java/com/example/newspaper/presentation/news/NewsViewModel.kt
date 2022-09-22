@@ -13,10 +13,8 @@ class NewsViewModel(
     private val repository: NewsRepository
 ): ViewModel() {
 
-
-
-    private val _newsFlow = repository.getNewsFlow()
-    val newsFlow = _newsFlow.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+    private val _newsFlow = MutableStateFlow(emptyList<Article>())
+    val newsFlow = _newsFlow.asStateFlow()
 
     private val _isNewsLoadingFromNetworkFlow = MutableStateFlow(true)
     private val isNewsLoadingFromNetworkFlow = _isNewsLoadingFromNetworkFlow.asStateFlow()
@@ -26,6 +24,9 @@ class NewsViewModel(
     }.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     init {
+        repository.getNewsFlow()
+            .onEach { _newsFlow.value = it }
+            .launchIn(viewModelScope)
         loadNewsFromNetwork()
     }
 
@@ -52,6 +53,18 @@ class NewsViewModel(
     fun setArticleNonFavorite(article: Article) {
         viewModelScope.launch {
             repository.setArticleNonFavorite(article)
+        }
+    }
+
+    fun getNewsBySearchQuery(query: String) {
+        viewModelScope.launch {
+            repository.getNewsBySearchQuery(query)
+                .onSuccess {
+                    _newsFlow.value = it
+                }
+                .onFailure {
+                    //
+                }
         }
     }
 

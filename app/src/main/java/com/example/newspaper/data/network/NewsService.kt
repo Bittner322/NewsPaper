@@ -8,10 +8,11 @@ interface NewsService {
 
     @GET("everything")
     suspend fun getNews(
-        @Query("q") q: String = "Тесла",
+        @Query("q") q: String = "Apple",
         @Query("from") from: String = "",
-        @Query("language") language: String = "ru",
-        @Query("sortBy") sortBy : String = "publishedAt",
+        @Query("language") language: String = "en",
+        //@Query("sortBy") sortBy : String = "publishedAt",
+        @Query("sortBy") sortBy : String = "popularity",
         @Query("apiKey") apiKey : String = "a5d65121640a45d99c48715b67299a36",
     ) : NewsResponse
 

@@ -18,8 +18,6 @@ class NewsRepository @Inject constructor(
     private val articleDatabase: ArticleDatabase
 ) {
 
-
-
     private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     private val currentDate = Calendar.getInstance().apply {
         add(Calendar.MONTH, -1)
@@ -62,6 +60,26 @@ class NewsRepository @Inject constructor(
             val newsFromNetwork = mapNews()
             articleDatabase.articleDao().insertAll(newsFromNetwork)
         }
+    }
+
+    suspend fun getNewsBySearchQuery(query: String) : Result<List<Article>> {
+       return runCatching { mapNewsBySearchQuery(query) }
+    }
+
+    private suspend fun mapNewsBySearchQuery(query: String): List<Article> {
+        val mappedNews = newsService.getNews(q = query, from = from).articles.map {
+            Article(
+                it.author.orEmpty(),
+                it.title.orEmpty(),
+                it.description.orEmpty(),
+                it.url,
+                it.urlToImage.orEmpty(),
+                simpleDateFormat.parse(it.publishedAt)?.time ?: currentDate.time,
+                it.content,
+                isFavorite = false
+            )
+        }
+        return mappedNews
     }
 
     private suspend fun mapNews(): List<Article> {

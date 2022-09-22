@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -59,6 +60,20 @@ class NewsFragment : Fragment() {
 
         binding.newsRecyclerView.adapter = adapter
 
+        binding.searchView.setOnQueryTextListener(object: android.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                binding.searchView.clearFocus()
+                viewModel.getNewsBySearchQuery(query.toString())
+
+                return false
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                return false
+            }
+
+        })
+
         lifecycleScope.launchWhenStarted {
 
             viewModel.newsFlow
@@ -73,7 +88,6 @@ class NewsFragment : Fragment() {
                 }
                 .launchIn(this)
         }
-
 
         return view
     }
@@ -94,4 +108,14 @@ class NewsFragment : Fragment() {
         toFullArticleActivityIntent.putExtra(INTENT_ARTICLE_ID, article.url)
         startActivity(toFullArticleActivityIntent)
     }
+
+    override fun onDetach() {
+
+        if(!requireActivity().isChangingConfigurations) {
+
+        }
+
+        super.onDetach()
+    }
+
 }
