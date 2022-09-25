@@ -1,6 +1,5 @@
 package com.example.newspaper.presentation.full_article
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +8,6 @@ import coil.load
 import com.example.newspaper.MyApplication
 import com.example.newspaper.databinding.ActivityFullArticleBinding
 import com.example.newspaper.di.DaggerFullArticleActivityComponent
-import dagger.Component.Factory
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
