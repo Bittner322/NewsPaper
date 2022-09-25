@@ -21,7 +21,7 @@
     <string name="main_activity_news_desc">A top panel with text \'news\'</string>
     <string name="main_activity_menu_desc">Main menu. Left button to switch for news, right for your profile.</string>
 
-    <string name="full_article_layout_test_title">Title of an test article</string>
+    <string name="full_article_layout_test_title">Title of a test article</string>
     <string name="full_article_layout_test_author">Emma Nolan</string>
     <string name="full_article_layout_dot_with_two_spaces"> · </string>
     <string name="full_article_layout_date">2022-07-04</string>
