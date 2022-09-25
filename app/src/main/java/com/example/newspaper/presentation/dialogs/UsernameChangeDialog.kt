@@ -56,6 +56,13 @@ class UsernameChangeDialog: DialogFragment() {
         return binding.root
     }
 
+    override fun onDetach() {
 
+        if(!requireActivity().isChangingConfigurations) {
+            MyApplication.clearComponent(daggerComponentKey)
+        }
+
+        super.onDetach()
+    }
 
 }

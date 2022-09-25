@@ -29,6 +29,8 @@
     <string name="full_article_content_desc">Content of an article</string>
     <string name="full_article_author_desc">Author of an article</string>
     <string name="full_article_date_desc">Date of an article</string>
+    <string name="full_article_arrow_up_desc">Arrow pointed up, via this you can scroll news page</string>
+    <string name="full_article_collapsing_image_desc">Collapsing image through scroll</string>
 
     <string name="history_layout_clear_history_button">Clear history</string>
     <string name="history_clear_button_desc">A clear button</string>
@@ -66,5 +68,8 @@
     <string name="category_science">Science</string>
     <string name="category_sports">Sports</string>
     <string name="category_technology">Technology</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_profile">Profile</string>
 
 </resources>

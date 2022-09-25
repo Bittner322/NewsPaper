@@ -93,4 +93,13 @@ class OnboardingFragmentNumberThree : Fragment() {
     private fun deleteCategory(categoryCard: CategoryCard) {
         viewModel.deleteCategoryFromDatabase(Category(categoryCard.name.lowercase()))
     }
+
+    override fun onDetach() {
+
+        if(!requireActivity().isChangingConfigurations) {
+            MyApplication.clearComponent(daggerComponentKey)
+        }
+
+        super.onDetach()
+    }
 }

@@ -157,7 +157,7 @@ class NewsRepository @Inject constructor(
         }
     }
 
-    suspend fun getChosenCategories(): List<Category> {
+    private suspend fun getChosenCategories(): List<Category> {
         return withContext(Dispatchers.IO) {
             articleDatabase.categoryDao().getCategories()
         }

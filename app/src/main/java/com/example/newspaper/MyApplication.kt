@@ -1,6 +1,5 @@
 package com.example.newspaper
 
-import android.app.Activity
 import android.app.Application
 import android.content.Context
 import com.example.newspaper.data.database.ArticleDatabase

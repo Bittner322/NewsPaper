@@ -3,11 +3,11 @@
     <item
         android:id="@+id/action_home"
         android:enabled="true"
-        android:title="Home"
+        android:title="@string/menu_home"
         android:icon="@drawable/home_selector"/>
     <item
         android:id="@+id/action_profile"
         android:enabled="true"
-        android:title="Profile"
+        android:title="@string/menu_profile"
         android:icon="@drawable/profile_selector"/>
 </menu>

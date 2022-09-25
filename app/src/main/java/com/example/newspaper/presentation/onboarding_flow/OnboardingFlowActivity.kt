@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
@@ -39,8 +38,6 @@ class OnboardingFlowActivity : FragmentActivity() {
             )
         }.inject(this)
 
-        //installSplashScreen()
-
         _binding = ActivityOnboardingFlowBinding.inflate(layoutInflater)
         val view = binding.root
 
@@ -64,5 +61,10 @@ class OnboardingFlowActivity : FragmentActivity() {
 
     }
 
-
+    override fun onDestroy() {
+        if (!isChangingConfigurations) {
+            MyApplication.clearComponent(daggerComponentKey)
+        }
+        super.onDestroy()
+    }
 }

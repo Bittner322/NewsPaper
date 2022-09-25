@@ -6,7 +6,6 @@ import com.example.newspaper.presentation.dialogs.UsernameChangeDialog
 import com.example.newspaper.presentation.favorite_articles.FavoriteArticleActivity
 import com.example.newspaper.presentation.full_article.FullArticleActivity
 import com.example.newspaper.presentation.history.HistoryActivity
-import com.example.newspaper.presentation.main_activity.MainActivity
 import com.example.newspaper.presentation.news.NewsFragment
 import com.example.newspaper.presentation.onboarding_flow.OnboardingFlowActivity
 import com.example.newspaper.presentation.onboarding_flow.OnboardingFragmentNumberThree
