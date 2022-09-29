@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
 import com.example.newspaper.data.repositories.models.ProfileCard
 import com.example.newspaper.databinding.FragmentProfileBinding
-import com.example.newspaper.di.DaggerProfileFragmentComponent
+import com.example.newspaper.di.feature_components.DaggerProfileFragmentComponent
 import com.example.newspaper.presentation.dialogs.UsernameChangeDialog
 import com.example.newspaper.presentation.faq.FaqActivity
 import com.example.newspaper.presentation.favorite_articles.FavoriteArticleActivity

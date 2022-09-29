@@ -1,6 +1,6 @@
 package com.example.newspaper.data.network
 
-import com.example.newspaper.data.database.Category
+import com.example.newspaper.data.database.models.Category
 import retrofit2.http.GET
 import retrofit2.http.Query
 

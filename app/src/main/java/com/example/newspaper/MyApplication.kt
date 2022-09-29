@@ -2,7 +2,7 @@ package com.example.newspaper
 
 import android.app.Application
 import android.content.Context
-import com.example.newspaper.data.database.ArticleDatabase
+import com.example.newspaper.data.database.databases.ArticleDatabase
 import com.example.newspaper.di.AppComponent
 import com.example.newspaper.di.DaggerAppComponent
 

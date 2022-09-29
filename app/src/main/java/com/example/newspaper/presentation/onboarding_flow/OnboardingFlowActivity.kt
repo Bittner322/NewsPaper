@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
 import com.example.newspaper.databinding.ActivityOnboardingFlowBinding
-import com.example.newspaper.di.DaggerOnboardingFlowFragmentActivity
+import com.example.newspaper.di.feature_components.DaggerOnboardingFlowFragmentActivityComponent
 import com.example.newspaper.presentation.main_activity.MainActivity
 import javax.inject.Inject
 
@@ -33,7 +33,7 @@ class OnboardingFlowActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
 
         MyApplication.provideComponent(daggerComponentKey) {
-            DaggerOnboardingFlowFragmentActivity.factory().create(
+            DaggerOnboardingFlowFragmentActivityComponent.factory().create(
                 appComponent = MyApplication.appComponent
             )
         }.inject(this)

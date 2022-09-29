@@ -3,7 +3,7 @@ package com.example.newspaper.presentation.news
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.newspaper.data.database.Article
+import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.data.repositories.NewsRepository
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

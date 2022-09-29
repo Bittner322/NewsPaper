@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.example.newspaper.MyApplication
 import com.example.newspaper.databinding.ActivityFullArticleBinding
-import com.example.newspaper.di.DaggerFullArticleActivityComponent
+import com.example.newspaper.di.feature_components.DaggerFullArticleActivityComponent
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject

@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
-import com.example.newspaper.data.database.Article
+import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.databinding.FragmentNewsBinding
-import com.example.newspaper.di.DaggerNewsFragmentComponent
+import com.example.newspaper.di.feature_components.DaggerNewsFragmentComponent
 import com.example.newspaper.presentation.full_article.FullArticleActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

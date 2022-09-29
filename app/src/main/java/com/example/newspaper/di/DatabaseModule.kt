@@ -1,6 +1,6 @@
 package com.example.newspaper.di
 
-import com.example.newspaper.data.database.ArticleDatabase
+import com.example.newspaper.data.database.databases.ArticleDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

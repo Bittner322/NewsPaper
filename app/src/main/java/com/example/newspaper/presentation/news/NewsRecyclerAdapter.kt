@@ -9,7 +9,7 @@ import android.widget.ToggleButton
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newspaper.R
-import com.example.newspaper.data.database.Article
+import com.example.newspaper.data.database.models.Article
 
 class NewsRecyclerAdapter(
     private val onItemClick: (Article) -> Unit,
@@ -20,10 +20,10 @@ class NewsRecyclerAdapter(
     private val data = mutableListOf<Article>()
 
     class ViewHolder(
-         itemView: View,
-         onItemClick: (Article) -> Unit,
-         private val onToggleChecked: (Article) -> Unit,
-         private val onToggleNonChecked: (Article) -> Unit,
+        itemView: View,
+        onItemClick: (Article) -> Unit,
+        private val onToggleChecked: (Article) -> Unit,
+        private val onToggleNonChecked: (Article) -> Unit,
      ): RecyclerView.ViewHolder(itemView) {
 
         private val titleTextView : TextView = itemView.findViewById(R.id.titleTextView)

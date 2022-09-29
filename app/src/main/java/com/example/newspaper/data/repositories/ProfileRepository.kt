@@ -1,7 +1,7 @@
 package com.example.newspaper.data.repositories
 
-import com.example.newspaper.data.database.ArticleDatabase
-import com.example.newspaper.data.database.User
+import com.example.newspaper.data.database.databases.ArticleDatabase
+import com.example.newspaper.data.database.models.User
 import com.example.newspaper.data.repositories.models.ProfileCard
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

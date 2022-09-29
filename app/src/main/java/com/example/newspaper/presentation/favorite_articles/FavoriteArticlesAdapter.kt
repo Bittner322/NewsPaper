@@ -8,7 +8,7 @@ import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newspaper.R
-import com.example.newspaper.data.database.Article
+import com.example.newspaper.data.database.models.Article
 
 class FavoriteArticlesAdapter(
     private val onItemClick: (Article) -> Unit,

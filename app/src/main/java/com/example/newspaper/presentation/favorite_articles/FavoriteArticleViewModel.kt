@@ -3,7 +3,7 @@ package com.example.newspaper.presentation.favorite_articles
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.newspaper.data.database.Article
+import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.data.repositories.NewsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

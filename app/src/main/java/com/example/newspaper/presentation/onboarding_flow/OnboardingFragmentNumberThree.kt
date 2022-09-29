@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
-import com.example.newspaper.data.database.Category
+import com.example.newspaper.data.database.models.Category
 import com.example.newspaper.data.repositories.models.CategoryCard
 import com.example.newspaper.databinding.FragmentOnboardingNumberThreeBinding
-import com.example.newspaper.di.DaggerOnboardingFragmentNumberThreeComponent
+import com.example.newspaper.di.feature_components.DaggerOnboardingFragmentNumberThreeComponent
 import com.example.newspaper.presentation.main_activity.MainActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

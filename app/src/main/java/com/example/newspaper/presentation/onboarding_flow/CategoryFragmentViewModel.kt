@@ -3,7 +3,7 @@ package com.example.newspaper.presentation.onboarding_flow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.newspaper.data.database.Category
+import com.example.newspaper.data.database.models.Category
 import com.example.newspaper.data.repositories.NewsRepository
 import com.example.newspaper.data.repositories.models.CategoryCard
 import kotlinx.coroutines.flow.MutableStateFlow

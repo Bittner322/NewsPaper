@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import com.example.newspaper.MyApplication
 import com.example.newspaper.R
 import com.example.newspaper.databinding.DialogUsernameChangeBinding
-import com.example.newspaper.di.DaggerUsernameChangeDialogComponent
+import com.example.newspaper.di.feature_components.DaggerUsernameChangeDialogComponent
 import javax.inject.Inject
 
 class UsernameChangeDialog: DialogFragment() {

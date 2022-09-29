@@ -1,9 +1,9 @@
 package com.example.newspaper.data.repositories
 
-import com.example.newspaper.data.database.Article
-import com.example.newspaper.data.database.ArticleDatabase
-import com.example.newspaper.data.database.ArticleHistory
-import com.example.newspaper.data.database.Category
+import com.example.newspaper.data.database.models.Article
+import com.example.newspaper.data.database.databases.ArticleDatabase
+import com.example.newspaper.data.database.models.ArticleHistory
+import com.example.newspaper.data.database.models.Category
 import com.example.newspaper.data.network.NewsService
 import com.example.newspaper.data.repositories.models.CategoryCard
 import kotlinx.coroutines.Dispatchers
