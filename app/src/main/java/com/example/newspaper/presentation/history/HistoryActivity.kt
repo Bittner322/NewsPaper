@@ -8,7 +8,9 @@ import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
 import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.databinding.ActivityHistoryBinding
+import com.example.newspaper.di.ComponentStorage
 import com.example.newspaper.di.feature_components.DaggerHistoryActivityComponent
+import com.example.newspaper.di.provideRootComponent
 import com.example.newspaper.presentation.full_article.FullArticleActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -33,9 +35,9 @@ class HistoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        MyApplication.provideComponent(daggerComponentKey) {
+        ComponentStorage.provideComponent(daggerComponentKey) {
             DaggerHistoryActivityComponent.factory().create(
-                appComponent = MyApplication.appComponent
+                appComponent = ComponentStorage.provideRootComponent()
             )
         }.inject(this)
 
@@ -67,7 +69,7 @@ class HistoryActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         if (!isChangingConfigurations) {
-            MyApplication.clearComponent(daggerComponentKey)
+            ComponentStorage.clearComponent(daggerComponentKey)
         }
         super.onDestroy()
     }

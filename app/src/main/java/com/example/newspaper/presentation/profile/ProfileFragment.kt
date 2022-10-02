@@ -11,7 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
 import com.example.newspaper.data.repositories.models.ProfileCard
 import com.example.newspaper.databinding.FragmentProfileBinding
+import com.example.newspaper.di.ComponentStorage
 import com.example.newspaper.di.feature_components.DaggerProfileFragmentComponent
+import com.example.newspaper.di.provideRootComponent
 import com.example.newspaper.presentation.dialogs.UsernameChangeDialog
 import com.example.newspaper.presentation.faq.FaqActivity
 import com.example.newspaper.presentation.favorite_articles.FavoriteArticleActivity
@@ -37,9 +39,9 @@ class ProfileFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        MyApplication.provideComponent(daggerComponentKey) {
+        ComponentStorage.provideComponent(daggerComponentKey) {
             DaggerProfileFragmentComponent.factory().create(
-                appComponent = MyApplication.appComponent
+                appComponent = ComponentStorage.provideRootComponent()
             )
         }.inject(this)
     }
@@ -99,7 +101,7 @@ class ProfileFragment : Fragment() {
     override fun onDetach() {
 
         if(!requireActivity().isChangingConfigurations) {
-            MyApplication.clearComponent(daggerComponentKey)
+            ComponentStorage.clearComponent(daggerComponentKey)
         }
 
         super.onDetach()

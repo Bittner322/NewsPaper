@@ -14,7 +14,9 @@ import com.example.newspaper.MyApplication
 import com.example.newspaper.data.database.models.Category
 import com.example.newspaper.data.repositories.models.CategoryCard
 import com.example.newspaper.databinding.FragmentOnboardingNumberThreeBinding
+import com.example.newspaper.di.ComponentStorage
 import com.example.newspaper.di.feature_components.DaggerOnboardingFragmentNumberThreeComponent
+import com.example.newspaper.di.provideRootComponent
 import com.example.newspaper.presentation.main_activity.MainActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -39,9 +41,9 @@ class OnboardingFragmentNumberThree : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        MyApplication.provideComponent(daggerComponentKey) {
+        ComponentStorage.provideComponent(daggerComponentKey) {
             DaggerOnboardingFragmentNumberThreeComponent.factory().create(
-                appComponent = MyApplication.appComponent
+                appComponent = ComponentStorage.provideRootComponent()
             )
         }.inject(this)
     }
@@ -97,7 +99,7 @@ class OnboardingFragmentNumberThree : Fragment() {
     override fun onDetach() {
 
         if(!requireActivity().isChangingConfigurations) {
-            MyApplication.clearComponent(daggerComponentKey)
+            ComponentStorage.clearComponent(daggerComponentKey)
         }
 
         super.onDetach()

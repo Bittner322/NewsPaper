@@ -1,6 +1,8 @@
 package com.example.newspaper.data.network
 
+import com.example.newspaper.BuildConfig
 import com.example.newspaper.data.database.models.Category
+import com.example.newspaper.data.network.models.NewsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -20,6 +22,6 @@ interface NewsService {
     suspend fun getNewsByCategories(
         @Query("country") country : String = "us",
         @Query("category") category: List<Category> = emptyList(),
-        @Query("apiKey") apiKey : String = "a5d65121640a45d99c48715b67299a36",
+        //@Query("apiKey") apiKey : String = BuildConfig.,
     ) : NewsResponse
 }

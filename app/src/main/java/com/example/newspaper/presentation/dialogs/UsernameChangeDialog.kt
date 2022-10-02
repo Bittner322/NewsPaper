@@ -9,7 +9,9 @@ import androidx.fragment.app.viewModels
 import com.example.newspaper.MyApplication
 import com.example.newspaper.R
 import com.example.newspaper.databinding.DialogUsernameChangeBinding
+import com.example.newspaper.di.ComponentStorage
 import com.example.newspaper.di.feature_components.DaggerUsernameChangeDialogComponent
+import com.example.newspaper.di.provideRootComponent
 import javax.inject.Inject
 
 class UsernameChangeDialog: DialogFragment() {
@@ -29,9 +31,9 @@ class UsernameChangeDialog: DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        MyApplication.provideComponent(daggerComponentKey) {
+        ComponentStorage.provideComponent(daggerComponentKey) {
             DaggerUsernameChangeDialogComponent.factory().create(
-                appComponent = MyApplication.appComponent
+                appComponent = ComponentStorage.provideRootComponent()
             )
         }.inject(this)
 
@@ -59,7 +61,7 @@ class UsernameChangeDialog: DialogFragment() {
     override fun onDetach() {
 
         if(!requireActivity().isChangingConfigurations) {
-            MyApplication.clearComponent(daggerComponentKey)
+            ComponentStorage.clearComponent(daggerComponentKey)
         }
 
         super.onDetach()

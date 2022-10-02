@@ -12,7 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
 import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.databinding.FragmentNewsBinding
+import com.example.newspaper.di.ComponentStorage
 import com.example.newspaper.di.feature_components.DaggerNewsFragmentComponent
+import com.example.newspaper.di.provideRootComponent
 import com.example.newspaper.presentation.full_article.FullArticleActivity
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -36,9 +38,9 @@ class NewsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        MyApplication.provideComponent(daggerComponentKey) {
+        ComponentStorage.provideComponent(daggerComponentKey) {
             DaggerNewsFragmentComponent.factory().create(
-                appComponent = MyApplication.appComponent
+                appComponent = ComponentStorage.provideRootComponent()
             )
         }.inject(this)
     }
@@ -110,8 +112,8 @@ class NewsFragment : Fragment() {
 
     override fun onDetach() {
 
-        if(!requireActivity().isChangingConfigurations) {
-            MyApplication.clearComponent(daggerComponentKey)
+        if (!requireActivity().isChangingConfigurations) {
+            ComponentStorage.clearComponent(daggerComponentKey)
         }
 
         super.onDetach()

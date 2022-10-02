@@ -1,4 +1,4 @@
-package com.example.newspaper.data.network
+package com.example.newspaper.data.network.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -10,7 +10,7 @@ data class NewsResponse(
     @SerialName("totalResults")
     val totalResults: Int,
     @SerialName("articles")
-    val articles: List<Articles>
+    val articles: List<Articles> = emptyList()
 ) {
     @Serializable
     data class Articles(

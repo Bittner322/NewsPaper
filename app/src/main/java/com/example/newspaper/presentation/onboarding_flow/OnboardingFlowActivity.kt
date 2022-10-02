@@ -8,7 +8,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
 import com.example.newspaper.databinding.ActivityOnboardingFlowBinding
+import com.example.newspaper.di.ComponentStorage
 import com.example.newspaper.di.feature_components.DaggerOnboardingFlowFragmentActivityComponent
+import com.example.newspaper.di.provideRootComponent
 import com.example.newspaper.presentation.main_activity.MainActivity
 import javax.inject.Inject
 
@@ -32,9 +34,9 @@ class OnboardingFlowActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        MyApplication.provideComponent(daggerComponentKey) {
+        ComponentStorage.provideComponent(daggerComponentKey) {
             DaggerOnboardingFlowFragmentActivityComponent.factory().create(
-                appComponent = MyApplication.appComponent
+                appComponent = ComponentStorage.provideRootComponent()
             )
         }.inject(this)
 
@@ -63,7 +65,7 @@ class OnboardingFlowActivity : FragmentActivity() {
 
     override fun onDestroy() {
         if (!isChangingConfigurations) {
-            MyApplication.clearComponent(daggerComponentKey)
+            ComponentStorage.clearComponent(daggerComponentKey)
         }
         super.onDestroy()
     }

@@ -7,7 +7,9 @@ import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.example.newspaper.MyApplication
 import com.example.newspaper.databinding.ActivityFullArticleBinding
+import com.example.newspaper.di.ComponentStorage
 import com.example.newspaper.di.feature_components.DaggerFullArticleActivityComponent
+import com.example.newspaper.di.provideRootComponent
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -30,10 +32,10 @@ class FullArticleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        MyApplication.provideComponent(daggerComponentKey) {
+        ComponentStorage.provideComponent(daggerComponentKey) {
             return@provideComponent DaggerFullArticleActivityComponent.factory()
                 .create(
-                    appComponent = MyApplication.appComponent,
+                    appComponent = ComponentStorage.provideRootComponent(),
                     url = intent.getStringExtra(INTENT_ARTICLE_ID).orEmpty()
                 )
         }.inject(this)
@@ -67,7 +69,7 @@ class FullArticleActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         if (!isChangingConfigurations) {
-            MyApplication.clearComponent(daggerComponentKey)
+            ComponentStorage.clearComponent(daggerComponentKey)
         }
         super.onDestroy()
     }
