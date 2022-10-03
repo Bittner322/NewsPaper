@@ -60,6 +60,10 @@ class FavoriteArticleActivity : AppCompatActivity() {
                 }
                 .launchIn(this)
         }
+
+        binding.favoriteActivityBackButton.setOnClickListener {
+            finish()
+        }
     }
 
     private fun onItemClick(article: Article) {

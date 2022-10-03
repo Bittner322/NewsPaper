@@ -34,6 +34,16 @@
                 android:src="@drawable/tesla"
                 android:contentDescription="@string/full_article_collapsing_image_desc" />
 
+            <ImageButton
+                android:id="@+id/fullArticleBackButton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@android:color/transparent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_arrow_back"
+                android:contentDescription="@string/full_article_activity_back_button_desc" />
+
             <LinearLayout
                 android:id="@+id/fullArticleArrowLayout"
                 android:layout_width="match_parent"
@@ -122,7 +132,6 @@
                 app:layout_constraintStart_toEndOf="@+id/fullArticleDot"
                 app:layout_constraintTop_toTopOf="@+id/fullArticleDot"
                 android:contentDescription="@string/full_article_date_desc"/>
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

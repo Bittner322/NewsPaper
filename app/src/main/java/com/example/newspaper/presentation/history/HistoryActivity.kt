@@ -52,6 +52,10 @@ class HistoryActivity : AppCompatActivity() {
             viewModel.onClearHistoryClick()
         }
 
+        binding.historyActivityBackButton.setOnClickListener {
+            finish()
+        }
+
         lifecycleScope.launchWhenStarted {
             viewModel.historyArticles
                 .onEach {

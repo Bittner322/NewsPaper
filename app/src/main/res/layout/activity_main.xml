@@ -7,7 +7,7 @@
     tools:context=".presentation.main_activity.MainActivity">
 
     <LinearLayout
-        android:id="@+id/mainTop"
+        android:id="@+id/favoriteArticlesTop"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/dark"
@@ -39,7 +39,7 @@
         app:layout_constraintBottom_toTopOf="@+id/mainMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mainTop" />
+        app:layout_constraintTop_toBottomOf="@id/favoriteArticlesTop" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

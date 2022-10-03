@@ -18,5 +18,9 @@ class FaqActivity : AppCompatActivity() {
 
         setContentView(view)
 
+        binding.faqActivityBackButton.setOnClickListener {
+            finish()
+        }
+
     }
 }

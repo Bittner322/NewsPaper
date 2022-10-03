@@ -8,13 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.newspaper.MyApplication
 import com.example.newspaper.data.repositories.models.ProfileCard
 import com.example.newspaper.databinding.FragmentProfileBinding
 import com.example.newspaper.di.ComponentStorage
 import com.example.newspaper.di.feature_components.DaggerProfileFragmentComponent
 import com.example.newspaper.di.provideRootComponent
-import com.example.newspaper.presentation.dialogs.UsernameChangeDialog
 import com.example.newspaper.presentation.faq.FaqActivity
 import com.example.newspaper.presentation.favorite_articles.FavoriteArticleActivity
 import com.example.newspaper.presentation.history.HistoryActivity
@@ -67,17 +65,6 @@ class ProfileFragment : Fragment() {
             profileViewModel.cards
                 .onEach { adapter.setData(it) }
                 .launchIn(this)
-
-            profileViewModel.usernameStateFlow
-                .onEach { binding.userNameTextView.text = it }
-                .launchIn(this)
-        }
-
-
-        binding.userNameTextView.setOnClickListener {
-            val dialogFragment = UsernameChangeDialog()
-            val manager = parentFragmentManager
-            dialogFragment.show(manager, "userNameChangeDialog")
         }
     }
 

@@ -58,7 +58,6 @@ class NewsRecyclerAdapter(
             contentTextView.isVisible = item.description.isNotBlank()
             contentTextView.text = item.description
 
-
             favoriteToggle.isChecked = item.isFavorite
         }
     }

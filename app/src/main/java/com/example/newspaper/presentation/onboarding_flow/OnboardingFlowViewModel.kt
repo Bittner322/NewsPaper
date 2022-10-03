@@ -11,11 +11,6 @@ class OnboardingFlowViewModel(
     private val repository: ProfileRepository
 ): ViewModel() {
 
-    fun setNewUser() {
-        viewModelScope.launch {
-            repository.setNewUser()
-        }
-    }
 }
 
 class OnboardingFlowViewModelFactory @Inject constructor(

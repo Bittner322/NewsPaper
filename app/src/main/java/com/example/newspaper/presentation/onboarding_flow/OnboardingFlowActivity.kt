@@ -43,10 +43,6 @@ class OnboardingFlowActivity : FragmentActivity() {
         _binding = ActivityOnboardingFlowBinding.inflate(layoutInflater)
         val view = binding.root
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.setNewUser()
-        }
-
         val sharedPref = MyApplication.applicationContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE)
 
         val isFirstLaunch = sharedPref.getBoolean(FIRST_LAUNCH, true)

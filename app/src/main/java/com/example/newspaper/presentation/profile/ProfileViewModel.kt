@@ -24,16 +24,10 @@ class ProfileViewModel(
         viewModelScope.launch {
             val response = repository.getCards()
             _cards.emit(response)
-            initUsername()
         }
     }
 
-    private fun initUsername() {
-        viewModelScope.launch {
-            val username = repository.getUsername()
-            usernameStateFlow.update { username }
-        }
-    }
+
 }
 
 class ProfileViewModelFactory @Inject constructor(

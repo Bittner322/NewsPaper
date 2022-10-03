@@ -44,6 +44,10 @@ class FullArticleActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        binding.fullArticleBackButton.setOnClickListener {
+            finish()
+        }
+
         lifecycleScope.launchWhenStarted {
             viewModel.titleStateFlow
                 .onEach { binding.fullArticleTitleTextView.text = it }

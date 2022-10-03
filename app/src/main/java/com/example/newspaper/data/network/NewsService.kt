@@ -15,13 +15,13 @@ interface NewsService {
         @Query("language") language: String = "en",
         //@Query("sortBy") sortBy : String = "publishedAt",
         @Query("sortBy") sortBy : String = "popularity",
-        @Query("apiKey") apiKey : String = "a5d65121640a45d99c48715b67299a36",
+        @Query("apiKey") apiKey : String = BuildConfig.API_KEY,
     ) : NewsResponse
 
     @GET("top-headlines")
     suspend fun getNewsByCategories(
         @Query("country") country : String = "us",
         @Query("category") category: List<Category> = emptyList(),
-        //@Query("apiKey") apiKey : String = BuildConfig.,
+        @Query("apiKey") apiKey : String = BuildConfig.API_KEY,
     ) : NewsResponse
 }

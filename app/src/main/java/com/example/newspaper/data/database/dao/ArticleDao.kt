@@ -8,10 +8,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ArticleDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun add(article: Article)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(articles: List<Article>)
 
     @Update
@@ -32,11 +32,11 @@ interface ArticleDao {
     @Query("SELECT * FROM Articles WHERE url = (:id) AND isFavorite = (:isFavorite)")
     fun getFavoriteArticleById(id: Int, isFavorite: Boolean): Article
 
-    @Query("UPDATE Articles SET isFavorite = 1 WHERE url = (:id)")
-    fun setArticleFavorite(id: String)
+    @Query("UPDATE Articles SET isFavorite = 1 WHERE url = (:url)")
+    fun setArticleFavorite(url: String)
 
-    @Query("UPDATE Articles SET isFavorite = 0 WHERE url = (:id)")
-    fun setArticleNonFavorite(id: String)
+    @Query("UPDATE Articles SET isFavorite = 0 WHERE url = (:url)")
+    fun setArticleNonFavorite(url: String)
 
     @Query("SELECT * FROM Articles INNER JOIN ArticleHistory ON Articles.url = ArticleHistory.url")
     fun getHistoryArticles(): List<Article>
