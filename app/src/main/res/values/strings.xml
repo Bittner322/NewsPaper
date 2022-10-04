@@ -10,6 +10,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile_item_my_favourites">My favourites</string>
     <string name="profile_item_history">History</string>
+    <string name="profile_item_my_news_categories">My categories</string>
     <string name="profile_item_offline_data">Offline data</string>
     <string name="profile_item_faq">FAQ</string>
     <string name="profile_picture_desc">Your profile picture</string>
@@ -63,7 +64,7 @@
     <string name="onboarding_item_2_favorite">You can make interesting articles favorite to read it later!</string>
     <string name="onboarding_item_2_gif">A gif with jumping heart</string>
     <string name="onboarding_item_2_start_button">A button for start reading news!</string>
-    
+
     <string name="category_business">Business</string>
     <string name="category_entertainment">Entertainment</string>
     <string name="category_general">General</string>
@@ -77,6 +78,7 @@
 
     <string name="favorite_activity_top_text">Favorite articles</string>
     <string name="favorite_activity_back_button_desc">Back button</string>
+    <string name="favorite_activity_top_text_desc">A top "Favorite articles" text</string>
 
 
 </resources>

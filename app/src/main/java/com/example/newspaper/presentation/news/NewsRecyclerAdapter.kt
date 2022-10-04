@@ -45,7 +45,7 @@ class NewsRecyclerAdapter(
                     item?.let { onToggleNonChecked(it) }
                 }
             }
-         }
+        }
 
         fun setDataItems(item: Article) {
             this.item = item

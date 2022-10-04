@@ -16,6 +16,10 @@ enum class ProfileCard(
         cardNameRes =R.string.profile_item_history,
         iconRes = R.drawable.ic_history
     ),
+    CATEGORIES(
+        cardNameRes = R.string.profile_item_my_news_categories,
+        iconRes = R.drawable.ic_category
+    ),
     FAQ(
         cardNameRes = R.string.profile_item_faq,
         iconRes =  R.drawable.ic_faq

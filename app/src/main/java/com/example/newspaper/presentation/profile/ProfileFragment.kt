@@ -13,6 +13,7 @@ import com.example.newspaper.databinding.FragmentProfileBinding
 import com.example.newspaper.di.ComponentStorage
 import com.example.newspaper.di.feature_components.DaggerProfileFragmentComponent
 import com.example.newspaper.di.provideRootComponent
+import com.example.newspaper.presentation.categories_activity.MyCategoriesActivity
 import com.example.newspaper.presentation.faq.FaqActivity
 import com.example.newspaper.presentation.favorite_articles.FavoriteArticleActivity
 import com.example.newspaper.presentation.history.HistoryActivity
@@ -77,6 +78,10 @@ class ProfileFragment : Fragment() {
             ProfileCard.HISTORY -> {
                 val toHistoryActivityIntent = Intent(requireActivity(), HistoryActivity::class.java)
                 startActivity(toHistoryActivityIntent)
+            }
+            ProfileCard.CATEGORIES -> {
+                val toCategoriesActivityIntent = Intent(requireActivity(), MyCategoriesActivity::class.java)
+                startActivity(toCategoriesActivityIntent)
             }
             ProfileCard.FAQ -> {
                 val toFaqActivityIntent = Intent(requireActivity(), FaqActivity::class.java)
