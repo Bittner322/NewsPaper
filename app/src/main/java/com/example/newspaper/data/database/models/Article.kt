@@ -18,5 +18,6 @@ data class Article(
     @ColumnInfo(name = "urlToImage") val urlToImage: String,
     @ColumnInfo(name = "publishedAt") val publishedAt: Long,
     @ColumnInfo(name = "content") val content: String,
-    @ColumnInfo(name = "isFavorite") val isFavorite: Boolean
+    @ColumnInfo(name = "isFavorite") val isFavorite: Boolean,
+    @ColumnInfo(name = "isInHistory") val isInHistory: Boolean,
 )

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.ToggleButton
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newspaper.R
 import com.example.newspaper.data.database.models.Article
@@ -40,13 +41,13 @@ class HistoryRecyclerAdapter(
         fun setDataItems(item: Article) {
             this.item = item
 
+            titleTextView.isVisible = item.title.isNotBlank()
             titleTextView.text = item.title
 
-            if(item.author != null)
-                authorTextView.text = item.author
-            else
-                authorTextView.text = "Unknown resource"
+            authorTextView.isVisible = item.author.isNotBlank()
+            authorTextView.text = item.author
 
+            contentTextView.isVisible = item.description.isNotBlank()
             contentTextView.text = item.description
         }
     }

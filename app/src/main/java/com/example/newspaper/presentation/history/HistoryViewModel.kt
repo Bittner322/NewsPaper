@@ -17,8 +17,6 @@ class HistoryViewModel(
     private val _articles = MutableStateFlow<List<Article>>(emptyList())
     val historyArticles = _articles.asStateFlow()
 
-
-
     init {
         viewModelScope.launch {
             _articles.emit(repository.getHistoryArticles())

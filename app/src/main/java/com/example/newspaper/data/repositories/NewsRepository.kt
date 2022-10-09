@@ -2,10 +2,8 @@ package com.example.newspaper.data.repositories
 
 import com.example.newspaper.data.database.databases.ArticleDatabase
 import com.example.newspaper.data.database.models.Article
-import com.example.newspaper.data.database.models.ArticleHistory
 import com.example.newspaper.data.network.NewsService
 import com.example.newspaper.data.repositories.models.CategoryCard
-import com.example.newspaper.data.repositories.models.CategoryData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
@@ -68,6 +66,7 @@ class NewsRepository @Inject constructor(
                 simpleDateFormat.parse(it.publishedAt)?.time ?: currentDate.time,
                 it.content.orEmpty(),
                 isFavorite = false,
+                isInHistory = false,
             )
         }
         return mappedNews
@@ -91,6 +90,7 @@ class NewsRepository @Inject constructor(
                 publishedAt = simpleDateFormat.parse(it.publishedAt)?.time ?: currentDate.time,
                 content = it.content.orEmpty(),
                 isFavorite = false,
+                isInHistory = false,
             )
         }
         return mappedNews
@@ -104,19 +104,19 @@ class NewsRepository @Inject constructor(
 
     suspend fun getHistoryArticles(): List<Article> {
         return withContext(Dispatchers.IO) {
-            articleDatabase.articleDao().getHistoryArticles()
+            articleDatabase.articleDao().getAllHistoricalArticles()
         }
     }
 
     suspend fun addItemToHistory(article: Article) {
         withContext(Dispatchers.IO) {
-            articleDatabase.historyDao().add(ArticleHistory(article.url, article.publishedAt))
+            articleDatabase.articleDao().setArticleToHistoryByUrl(article.url)
         }
     }
 
     suspend fun clearHistory() {
         withContext(Dispatchers.IO) {
-            articleDatabase.historyDao().clearHistory()
+            articleDatabase.articleDao().clearHistory()
         }
     }
 

@@ -38,9 +38,18 @@ interface ArticleDao {
     @Query("UPDATE Articles SET isFavorite = 0 WHERE url = (:url)")
     fun setArticleNonFavorite(url: String)
 
-    @Query("SELECT * FROM Articles INNER JOIN ArticleHistory ON Articles.url = ArticleHistory.url")
-    fun getHistoryArticles(): List<Article>
-
     @Query("SELECT * FROM Articles WHERE title LIKE '%' || :query || '%' OR description LIKE '%' || :query || '%' OR content LIKE '%' || :query || '%' ORDER BY publishedAt DESC")
     fun getAllArticlesByQuery(query: String): Flow<List<Article>>
+
+    @Query("SELECT * FROM Articles WHERE isInHistory = 1")
+    fun getAllHistoricalArticles(): List<Article>
+
+    @Query("UPDATE Articles SET isInHistory = 1 WHERE url = :url")
+    fun setArticleToHistoryByUrl(url: String)
+
+    @Query("UPDATE Articles SET isInHistory = 0 WHERE isInHistory = 1")
+    fun clearHistory()
+
+
+
 }
