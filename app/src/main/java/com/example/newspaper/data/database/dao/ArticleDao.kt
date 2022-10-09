@@ -41,6 +41,6 @@ interface ArticleDao {
     @Query("SELECT * FROM Articles INNER JOIN ArticleHistory ON Articles.url = ArticleHistory.url")
     fun getHistoryArticles(): List<Article>
 
-    @Query("SELECT * FROM Articles INNER JOIN SearchedNewsArticles ON Articles.url = SearchedNewsArticles.url")
-    fun getSearchedArticlesFlow(): Flow<List<Article>>
+    @Query("SELECT * FROM Articles WHERE title LIKE '%' || :query || '%' OR description LIKE '%' || :query || '%' OR content LIKE '%' || :query || '%' ORDER BY publishedAt DESC")
+    fun getAllArticlesByQuery(query: String): Flow<List<Article>>
 }

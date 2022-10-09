@@ -7,19 +7,17 @@ import androidx.room.RoomDatabase
 import com.example.newspaper.data.database.dao.ArticleDao
 import com.example.newspaper.data.database.dao.ArticleHistoryDao
 import com.example.newspaper.data.database.dao.CategoryDao
-import com.example.newspaper.data.database.dao.SearchedNewsDao
 import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.data.database.models.ArticleHistory
 import com.example.newspaper.data.database.models.Category
-import com.example.newspaper.data.database.models.SearchedNewsArticle
+import com.example.newspaper.data.repositories.models.CategoryCard
 
-@Database(entities = [Article::class, ArticleHistory::class, Category::class, SearchedNewsArticle::class], version = 12, exportSchema = false)
+@Database(entities = [Article::class, ArticleHistory::class, Category::class], version = 13, exportSchema = false)
 abstract class ArticleDatabase: RoomDatabase() {
 
     abstract fun articleDao(): ArticleDao
     abstract fun historyDao(): ArticleHistoryDao
     abstract fun categoryDao(): CategoryDao
-    abstract fun searchedNewsDao(): SearchedNewsDao
 
     companion object {
 
@@ -34,6 +32,19 @@ abstract class ArticleDatabase: RoomDatabase() {
             )
                 .fallbackToDestructiveMigration()
                 .build()
+        }
+
+        suspend fun fillDatabase() {
+            val hasCategories = INSTANCE.categoryDao().getCategories().isNotEmpty()
+            if (!hasCategories) {
+                INSTANCE.categoryDao().insertAll(listOf(
+                    Category(
+                        id = CategoryCard.BUSINESS.id,
+                        categoryName = CategoryCard.BUSINESS.categoryName.toString(),
+                        isSelected = false
+                    ),
+                ))
+            }
         }
     }
 }

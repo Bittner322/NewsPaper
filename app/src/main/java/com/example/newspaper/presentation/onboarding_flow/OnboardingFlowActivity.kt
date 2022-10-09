@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
 import com.example.newspaper.databinding.ActivityOnboardingFlowBinding
 import com.example.newspaper.di.ComponentStorage
@@ -25,8 +24,6 @@ class OnboardingFlowActivity : FragmentActivity() {
 
     @Inject
     lateinit var viewModelFactory: OnboardingFlowViewModelFactory
-
-    private val viewModel: OnboardingFlowViewModel by viewModels { viewModelFactory }
 
     private val daggerComponentKey = "OnboardingFlowActivity"
 

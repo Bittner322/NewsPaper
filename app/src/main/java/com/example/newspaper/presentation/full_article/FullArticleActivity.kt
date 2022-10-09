@@ -5,7 +5,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import coil.load
-import com.example.newspaper.MyApplication
 import com.example.newspaper.databinding.ActivityFullArticleBinding
 import com.example.newspaper.di.ComponentStorage
 import com.example.newspaper.di.feature_components.DaggerFullArticleActivityComponent

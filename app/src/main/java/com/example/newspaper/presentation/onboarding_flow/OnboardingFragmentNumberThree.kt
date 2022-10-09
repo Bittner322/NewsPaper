@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
-import com.example.newspaper.data.database.models.Category
 import com.example.newspaper.data.repositories.models.CategoryCard
 import com.example.newspaper.databinding.FragmentOnboardingNumberThreeBinding
 import com.example.newspaper.di.ComponentStorage
@@ -75,8 +74,8 @@ class OnboardingFragmentNumberThree : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = CategoryRecyclerAdapter(
-            onToggleChecked = ::addCategory,
-            onToggleNonChecked = ::deleteCategory,
+            onToggleChecked = ::setCategoryIsSelected,
+            onToggleNonChecked = ::setCategoryIsNotSelected,
         )
 
         binding.categoriesRecycler.adapter = adapter
@@ -88,12 +87,12 @@ class OnboardingFragmentNumberThree : Fragment() {
         }
     }
 
-    private fun addCategory(categoryCard: CategoryCard) {
-        viewModel.addCategoryIntoDatabase(Category(categoryCard.name.lowercase()))
+    private fun setCategoryIsSelected(categoryCard: CategoryCard) {
+        viewModel.setCategoryIsSelected(categoryCard.id)
     }
 
-    private fun deleteCategory(categoryCard: CategoryCard) {
-        viewModel.deleteCategoryFromDatabase(Category(categoryCard.name.lowercase()))
+    private fun setCategoryIsNotSelected(categoryCard: CategoryCard) {
+        viewModel.setCategoryIsNotSelected(categoryCard.id)
     }
 
     override fun onDetach() {

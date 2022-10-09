@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.newspaper.data.database.models.Category
 import com.example.newspaper.data.repositories.models.CategoryCard
 import com.example.newspaper.databinding.ActivityMyCategoriesBinding
 import com.example.newspaper.di.ComponentStorage
@@ -46,8 +45,8 @@ class MyCategoriesActivity : AppCompatActivity() {
         }
 
         val adapter = MyCategoriesRecyclerAdapter(
-            onToggleChecked = ::addCategory,
-            onToggleNonChecked = ::deleteCategory
+            onToggleChecked = ::setCategoryIsSelected,
+            onToggleNonChecked = ::setCategoryIsNonSelected
         )
 
         binding.myCategoriesRecyclerView.adapter = adapter
@@ -59,12 +58,12 @@ class MyCategoriesActivity : AppCompatActivity() {
         }
     }
 
-    private fun addCategory(categoryCard: CategoryCard) {
-        viewModel.addCategoryIntoDatabase(Category(categoryCard.name.lowercase()))
+    private fun setCategoryIsSelected(categoryCard: CategoryCard) {
+        viewModel.setCategoryIsSelected(categoryCard.id)
     }
 
-    private fun deleteCategory(categoryCard: CategoryCard) {
-        viewModel.deleteCategoryFromDatabase(Category(categoryCard.name.lowercase()))
+    private fun setCategoryIsNonSelected(categoryCard: CategoryCard) {
+        viewModel.setCategoryIsNotSelected(categoryCard.id)
     }
 
     override fun onDestroy() {

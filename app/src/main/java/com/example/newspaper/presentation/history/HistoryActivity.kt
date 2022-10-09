@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.newspaper.MyApplication
 import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.databinding.ActivityHistoryBinding
 import com.example.newspaper.di.ComponentStorage

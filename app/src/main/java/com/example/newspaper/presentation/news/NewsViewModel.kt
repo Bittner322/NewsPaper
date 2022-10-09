@@ -3,9 +3,9 @@ package com.example.newspaper.presentation.news
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.room.Query
 import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.data.repositories.NewsRepository
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,6 +19,7 @@ class NewsViewModel(
 
     private val _isNewsLoadingFromNetworkFlow = MutableStateFlow(true)
     private val isNewsLoadingFromNetworkFlow = _isNewsLoadingFromNetworkFlow.asStateFlow()
+    private var searchingArticlesJob: Job? = null
 
     val isProgressBarVisible = combine(isNewsLoadingFromNetworkFlow, newsFlow) { isNewsLoadingFromNetwork, news ->
         isNewsLoadingFromNetwork && news.isEmpty()
@@ -57,24 +58,16 @@ class NewsViewModel(
         }
     }
 
-    /*fun getNewsBySearchQuery(query: String) {
-        viewModelScope.launch {
-            repository.getNewsBySearchQuery(query)
-                .onSuccess {
-                    _newsFlow.value = it
-                }
-                .onFailure {
-                    //
-                }
-        }
-    }*/
-
-    fun getNewsBySearchQuery(query: String) {
+    fun loadNewsBySearchQuery(query: String) {
+        searchingArticlesJob?.cancel()
+        searchingArticlesJob = repository.getAllArticles(query)
+            .filter { it.isNotEmpty() }
+            .onEach { _newsFlow.value = it }
+            .launchIn(viewModelScope)
         viewModelScope.launch {
             repository.loadAllArticlesIntoDatabase(query)
         }
     }
-
 }
 
 class NewsViewModelFactory @Inject constructor(

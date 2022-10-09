@@ -54,7 +54,9 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/favoriteArticlesTop" />
+        app:layout_constraintTop_toBottomOf="@+id/favoriteArticlesTop"
+        android:paddingBottom="12dp"
+        android:clipToPadding="false"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

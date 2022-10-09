@@ -1,13 +1,14 @@
 package com.example.newspaper.data.repositories
 
-import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.data.database.databases.ArticleDatabase
+import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.data.database.models.ArticleHistory
-import com.example.newspaper.data.database.models.Category
 import com.example.newspaper.data.network.NewsService
 import com.example.newspaper.data.repositories.models.CategoryCard
+import com.example.newspaper.data.repositories.models.CategoryData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
@@ -27,15 +28,15 @@ class NewsRepository @Inject constructor(
         simpleDateFormat.format(currentDate)
     }.getOrNull().orEmpty()
 
-    suspend fun addCategoryIntoDatabase(category: Category) {
+    suspend fun setCategoryIsSelected(id: Int) {
         withContext(Dispatchers.IO) {
-            articleDatabase.categoryDao().add(category)
+            articleDatabase.categoryDao().setCategoryIsSelected(id)
         }
     }
 
-    suspend fun deleteCategoryFromDatabase(category: Category) {
+    suspend fun setCategoryIsNotSelected(id: Int) {
         withContext(Dispatchers.IO) {
-            articleDatabase.categoryDao().delete(category)
+            articleDatabase.categoryDao().setCategoryIsNotSelected(id)
         }
     }
 
@@ -54,10 +55,6 @@ class NewsRepository @Inject constructor(
             val newsFromNetwork = mapNewsBySearchQuery(query)
             articleDatabase.articleDao().insertAll(newsFromNetwork)
         }
-    }
-
-    suspend fun getNewsBySearchQuery(query: String) : Result<List<Article>> {
-       return runCatching { mapNewsBySearchQuery(query) }
     }
 
     private suspend fun mapNewsBySearchQuery(query: String): List<Article> {
@@ -99,7 +96,7 @@ class NewsRepository @Inject constructor(
         return mappedNews
     }
 
-    suspend fun getCategories(): List<CategoryCard> {
+    suspend fun getCategoryCards(): List<CategoryCard> {
         return withContext(Dispatchers.IO) {
             CategoryCard.values().toList()
         }
@@ -137,7 +134,7 @@ class NewsRepository @Inject constructor(
 
     private suspend fun getChosenCategories(): List<String> {
         return withContext(Dispatchers.IO) {
-            articleDatabase.categoryDao().getCategories()
+            articleDatabase.categoryDao().getCategoriesForRequest()
         }
     }
 
@@ -147,9 +144,8 @@ class NewsRepository @Inject constructor(
         }
     }
 
-    suspend fun getSearchedNewsFromDatabase(): Flow<List<Article>> {
-        return withContext(Dispatchers.IO) {
-            articleDatabase.articleDao().getSearchedArticlesFlow()
-        }
+    fun getAllArticles(query: String): Flow<List<Article>> {
+        return articleDatabase.articleDao().getAllArticlesByQuery(query)
+            .flowOn(Dispatchers.IO)
     }
 }

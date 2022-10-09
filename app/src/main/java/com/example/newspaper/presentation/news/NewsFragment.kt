@@ -9,7 +9,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.newspaper.MyApplication
 import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.databinding.FragmentNewsBinding
 import com.example.newspaper.di.ComponentStorage
@@ -64,8 +63,7 @@ class NewsFragment : Fragment() {
         binding.searchView.setOnQueryTextListener(object: android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 binding.searchView.clearFocus()
-                viewModel.getNewsBySearchQuery(query.toString())
-
+                viewModel.loadNewsBySearchQuery(query.toString())
                 return false
             }
 
