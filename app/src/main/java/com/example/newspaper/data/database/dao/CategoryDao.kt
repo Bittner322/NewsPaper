@@ -5,10 +5,10 @@ import com.example.newspaper.data.database.models.Category
 
 @Dao
 interface CategoryDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun add(category: Category)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(categories: List<Category>)
 
     @Update
@@ -17,6 +17,9 @@ interface CategoryDao {
     @Delete
     suspend fun delete(category: Category)
 
-    @Query("SELECT * FROM Category")
-    suspend fun getCategories(): List<Category>
+    @Query("SELECT categoryName FROM Category")
+    suspend fun getCategories(): List<String>
+
+    @Query("DELETE FROM Category")
+    suspend fun deleteAllCategoriesFromDatabase()
 }

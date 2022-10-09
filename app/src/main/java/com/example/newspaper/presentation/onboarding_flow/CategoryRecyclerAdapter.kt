@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newspaper.R
+import com.example.newspaper.data.database.models.Category
 import com.example.newspaper.data.repositories.models.CategoryCard
 
 class CategoryRecyclerAdapter(

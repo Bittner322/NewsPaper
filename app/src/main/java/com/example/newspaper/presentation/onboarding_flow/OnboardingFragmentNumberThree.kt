@@ -102,6 +102,12 @@ class OnboardingFragmentNumberThree : Fragment() {
             ComponentStorage.clearComponent(daggerComponentKey)
         }
 
+        val sharedPref = MyApplication.applicationContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+
+        if(!sharedPref.contains(FIRST_LAUNCH)) {
+            viewModel.deleteAllCategoriesFromDatabase()
+        }
+
         super.onDetach()
     }
 }

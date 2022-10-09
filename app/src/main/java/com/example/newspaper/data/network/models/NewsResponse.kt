@@ -29,7 +29,7 @@ data class NewsResponse(
         @SerialName("publishedAt")
         val publishedAt: String,
         @SerialName("content")
-        val content : String
+        val content : String?
     ) {
         @Serializable
         data class Source (

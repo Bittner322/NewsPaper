@@ -36,6 +36,12 @@ class CategoryFragmentViewModel(
             repository.deleteCategoryFromDatabase(category)
         }
     }
+
+    fun deleteAllCategoriesFromDatabase() {
+        viewModelScope.launch {
+            repository.deleteAllCategoriesFromDatabase()
+        }
+    }
 }
 
 class CategoryFragmentViewModelFactory @Inject constructor(

@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 data class Category(
     @PrimaryKey
     @ColumnInfo(name = "categoryName")
-    val categoryName: String
+    val categoryName: String,
 )

@@ -72,6 +72,7 @@ class MyCategoriesActivity : AppCompatActivity() {
         if (!isChangingConfigurations) {
             ComponentStorage.clearComponent(daggerComponentKey)
         }
+
         super.onDestroy()
     }
 }

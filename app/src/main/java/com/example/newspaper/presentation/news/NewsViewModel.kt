@@ -3,6 +3,7 @@ package com.example.newspaper.presentation.news
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.room.Query
 import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.data.repositories.NewsRepository
 import kotlinx.coroutines.flow.*
@@ -33,7 +34,7 @@ class NewsViewModel(
     private fun loadNewsFromNetwork() {
         viewModelScope.launch {
             _isNewsLoadingFromNetworkFlow.update { true }
-            repository.loadAllArticlesIntoDatabase()
+            repository.loadCategorizedNewsIntoDatabase()
             _isNewsLoadingFromNetworkFlow.update { false }
         }
     }
@@ -56,7 +57,7 @@ class NewsViewModel(
         }
     }
 
-    fun getNewsBySearchQuery(query: String) {
+    /*fun getNewsBySearchQuery(query: String) {
         viewModelScope.launch {
             repository.getNewsBySearchQuery(query)
                 .onSuccess {
@@ -65,6 +66,12 @@ class NewsViewModel(
                 .onFailure {
                     //
                 }
+        }
+    }*/
+
+    fun getNewsBySearchQuery(query: String) {
+        viewModelScope.launch {
+            repository.loadAllArticlesIntoDatabase(query)
         }
     }
 

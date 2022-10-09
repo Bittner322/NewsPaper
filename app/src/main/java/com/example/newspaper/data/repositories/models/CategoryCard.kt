@@ -4,7 +4,7 @@ import androidx.annotation.StringRes
 import com.example.newspaper.R
 
 enum class CategoryCard(
-    @StringRes val categoryName: Int
+    @StringRes val categoryName: Int,
 ) {
     BUSINESS (
        categoryName = R.string.category_business

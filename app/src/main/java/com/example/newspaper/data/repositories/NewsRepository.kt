@@ -27,12 +27,6 @@ class NewsRepository @Inject constructor(
         simpleDateFormat.format(currentDate)
     }.getOrNull().orEmpty()
 
-    suspend fun getCategoriesForRequest(): List<Category> {
-        return withContext(Dispatchers.IO) {
-            articleDatabase.categoryDao().getCategories()
-        }
-    }
-
     suspend fun addCategoryIntoDatabase(category: Category) {
         withContext(Dispatchers.IO) {
             articleDatabase.categoryDao().add(category)
@@ -55,9 +49,9 @@ class NewsRepository @Inject constructor(
         }
     }
 
-    suspend fun loadAllArticlesIntoDatabase(): Result<Unit> {
+    suspend fun loadAllArticlesIntoDatabase(query: String): Result<Unit> {
         return runCatching {
-            val newsFromNetwork = mapNews()
+            val newsFromNetwork = mapNewsBySearchQuery(query)
             articleDatabase.articleDao().insertAll(newsFromNetwork)
         }
     }
@@ -75,27 +69,11 @@ class NewsRepository @Inject constructor(
                 it.url,
                 it.urlToImage.orEmpty(),
                 simpleDateFormat.parse(it.publishedAt)?.time ?: currentDate.time,
-                it.content,
-                isFavorite = false
+                it.content.orEmpty(),
+                isFavorite = false,
             )
         }
         return mappedNews
-    }
-
-    private suspend fun mapNews(): List<Article> {
-        val mappedItems = newsService.getNews(from = from).articles.map {
-            Article(
-                it.author.orEmpty(),
-                it.title.orEmpty(),
-                it.description.orEmpty(),
-                it.url,
-                it.urlToImage.orEmpty(),
-                simpleDateFormat.parse(it.publishedAt)?.time ?: currentDate.time,
-                it.content,
-                isFavorite = false
-            )
-        }
-        return mappedItems
     }
 
     suspend fun loadCategorizedNewsIntoDatabase(): Result<Unit> {
@@ -108,14 +86,14 @@ class NewsRepository @Inject constructor(
     private suspend fun mapCategorizedNews(): List<Article> {
         val mappedNews = newsService.getNewsByCategories(category = getChosenCategories()).articles.map {
             Article(
-                it.author.orEmpty(),
-                it.title.orEmpty(),
-                it.description.orEmpty(),
-                it.url,
-                it.urlToImage.orEmpty(),
-                simpleDateFormat.parse(it.publishedAt)?.time ?: currentDate.time,
-                it.content,
-                isFavorite = false
+                author = it.author.orEmpty(),
+                title = it.title.orEmpty(),
+                description = it.description.orEmpty(),
+                url = it.url,
+                urlToImage = it.urlToImage.orEmpty(),
+                publishedAt = simpleDateFormat.parse(it.publishedAt)?.time ?: currentDate.time,
+                content = it.content.orEmpty(),
+                isFavorite = false,
             )
         }
         return mappedNews
@@ -157,10 +135,21 @@ class NewsRepository @Inject constructor(
         }
     }
 
-    private suspend fun getChosenCategories(): List<Category> {
+    private suspend fun getChosenCategories(): List<String> {
         return withContext(Dispatchers.IO) {
             articleDatabase.categoryDao().getCategories()
         }
     }
 
+    suspend fun deleteAllCategoriesFromDatabase() {
+        withContext(Dispatchers.IO) {
+            articleDatabase.categoryDao().deleteAllCategoriesFromDatabase()
+        }
+    }
+
+    suspend fun getSearchedNewsFromDatabase(): Flow<List<Article>> {
+        return withContext(Dispatchers.IO) {
+            articleDatabase.articleDao().getSearchedArticlesFlow()
+        }
+    }
 }
