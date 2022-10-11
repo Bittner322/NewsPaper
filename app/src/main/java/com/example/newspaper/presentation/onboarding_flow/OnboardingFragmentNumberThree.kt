@@ -6,11 +6,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.MyApplication
+import com.example.newspaper.R
 import com.example.newspaper.data.repositories.models.CategoryCard
 import com.example.newspaper.databinding.FragmentOnboardingNumberThreeBinding
 import com.example.newspaper.di.ComponentStorage
@@ -57,13 +60,23 @@ class OnboardingFragmentNumberThree : Fragment() {
 
         binding.onboardingStartButton.setOnClickListener {
 
-            sharedPref.edit {
-                putBoolean(FIRST_LAUNCH, false)
+            if(viewModel.getCountOfSelectedCategoriesFromDatabase() == 0) {
+                Toast.makeText(
+                    MyApplication.applicationContext(),
+                    resources.getString(R.string.toast_you_did_not_picked_any_category),
+                    LENGTH_LONG,
+                ).show()
             }
+            else {
 
-            val toMainActivityIntent = Intent(activity, MainActivity::class.java)
-            activity?.startActivity(toMainActivityIntent)
-            activity?.finish()
+                sharedPref.edit {
+                    putBoolean(FIRST_LAUNCH, false)
+                }
+
+                val toMainActivityIntent = Intent(requireActivity(), MainActivity::class.java)
+                requireActivity().startActivity(toMainActivityIntent)
+                requireActivity().finish()
+            }
 
         }
 
@@ -84,6 +97,7 @@ class OnboardingFragmentNumberThree : Fragment() {
             viewModel.categories
                 .onEach { adapter.setData(it) }
                 .launchIn(this)
+
         }
     }
 

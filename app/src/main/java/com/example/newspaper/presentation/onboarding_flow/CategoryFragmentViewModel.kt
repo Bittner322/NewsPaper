@@ -5,9 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.newspaper.data.repositories.NewsRepository
 import com.example.newspaper.data.repositories.models.CategoryCard
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class CategoryFragmentViewModel(
@@ -40,6 +42,10 @@ class CategoryFragmentViewModel(
         viewModelScope.launch {
             repository.deleteAllCategoriesFromDatabase()
         }
+    }
+
+    suspend fun getCountOfSelectedCategoriesFromDatabase(): Int {
+        return repository.getCountOfSelectedCategories()
     }
 }
 

@@ -21,7 +21,7 @@ interface CategoryDao {
     suspend fun getCategories(): List<Category>
 
     @Query("SELECT categoryName FROM Category WHERE is_selected = 1")
-    suspend fun getCategoriesForRequest(): List<String>
+    suspend fun getChosenCategoriesForRequest(): List<String>
 
     @Query("DELETE FROM Category")
     suspend fun deleteAllCategoriesFromDatabase()
@@ -31,5 +31,11 @@ interface CategoryDao {
 
     @Query("UPDATE Category SET is_selected = 0 WHERE id = :id")
     suspend fun setCategoryIsNotSelected(id: Int)
+
+    @Query("SELECT is_selected FROM Category WHERE categoryName = :categoryName")
+    suspend fun getChosenCategory(categoryName: String): Boolean
+
+    @Query("SELECT COUNT(is_selected) FROM Category WHERE is_selected = 1")
+    suspend fun getCountOfSelectedCategories(): Int
 
 }

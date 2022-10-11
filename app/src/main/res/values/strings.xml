@@ -6,6 +6,7 @@
     <string name="next">Next</string>
     <string name="start">Let\'s start!</string>
     <string name="back">Back</string>
+    <string name="toast_you_did_not_picked_any_category">You did not picked any category!</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile_item_my_favourites">My favourites</string>

@@ -4,12 +4,14 @@ import com.example.newspaper.data.database.databases.ArticleDatabase
 import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.data.network.NewsService
 import com.example.newspaper.data.repositories.models.CategoryCard
+import com.example.newspaper.data.repositories.models.CategoryData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.ThreadPoolExecutor.DiscardOldestPolicy
 import javax.inject.Inject
 
 class NewsRepository @Inject constructor(
@@ -108,6 +110,17 @@ class NewsRepository @Inject constructor(
         }
     }
 
+    suspend fun mapCategoryCardsToCategoryData(): List<CategoryData> {
+        return withContext(Dispatchers.IO) {
+            CategoryCard.values().toList().map {
+                CategoryData(
+                    nameResId = it.categoryName,
+                    isSelected = getChosenCategory(it.categoryName.toString())
+                )
+            }
+        }
+    }
+
     suspend fun addItemToHistory(article: Article) {
         withContext(Dispatchers.IO) {
             articleDatabase.articleDao().setArticleToHistoryByUrl(article.url)
@@ -134,7 +147,7 @@ class NewsRepository @Inject constructor(
 
     private suspend fun getChosenCategories(): List<String> {
         return withContext(Dispatchers.IO) {
-            articleDatabase.categoryDao().getCategoriesForRequest()
+            articleDatabase.categoryDao().getChosenCategoriesForRequest()
         }
     }
 
@@ -147,5 +160,17 @@ class NewsRepository @Inject constructor(
     fun getAllArticles(query: String): Flow<List<Article>> {
         return articleDatabase.articleDao().getAllArticlesByQuery(query)
             .flowOn(Dispatchers.IO)
+    }
+
+    private suspend fun getChosenCategory(categoryName: String): Boolean {
+        return withContext(Dispatchers.IO) {
+            articleDatabase.categoryDao().getChosenCategory(categoryName)
+        }
+    }
+
+    suspend fun getCountOfSelectedCategories(): Int {
+        return withContext(Dispatchers.IO) {
+            articleDatabase.categoryDao().getCountOfSelectedCategories()
+        }
     }
 }
