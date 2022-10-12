@@ -112,10 +112,10 @@ class NewsRepository @Inject constructor(
 
     suspend fun mapCategoryCardsToCategoryData(): List<CategoryData> {
         return withContext(Dispatchers.IO) {
-            CategoryCard.values().toList().map {
+            articleDatabase.categoryDao().getCategories().map {
                 CategoryData(
                     nameResId = it.categoryName,
-                    isSelected = getChosenCategory(it.categoryName.toString())
+                    isSelected = it.isSelected
                 )
             }
         }

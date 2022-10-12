@@ -35,7 +35,7 @@ interface CategoryDao {
     @Query("SELECT is_selected FROM Category WHERE categoryName = :categoryName")
     suspend fun getChosenCategory(categoryName: String): Boolean
 
-    @Query("SELECT COUNT(is_selected) FROM Category WHERE is_selected = 1")
+    @Query("SELECT COUNT(id) FROM Category WHERE is_selected = 1")
     suspend fun getCountOfSelectedCategories(): Int
 
 }

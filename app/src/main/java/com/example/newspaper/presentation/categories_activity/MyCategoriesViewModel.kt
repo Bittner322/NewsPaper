@@ -17,6 +17,9 @@ class MyCategoriesViewModel(
     private val _categories = MutableStateFlow<List<CategoryCard>>(emptyList())
     val categories = _categories.asStateFlow()
 
+    private val _isCategorySelected = MutableStateFlow(false)
+    val isCategorySelected = _isCategorySelected.asStateFlow()
+
     init {
         viewModelScope.launch {
             val categoryList = repository.getCategoryCards()

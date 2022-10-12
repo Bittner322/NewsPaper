@@ -34,13 +34,15 @@ abstract class ArticleDatabase: RoomDatabase() {
         suspend fun fillDatabase() {
             val hasCategories = INSTANCE.categoryDao().getCategories().isNotEmpty()
             if (!hasCategories) {
-                INSTANCE.categoryDao().insertAll(listOf(
-                    Category(
-                        id = CategoryCard.BUSINESS.id,
-                        categoryName = CategoryCard.BUSINESS.categoryName.toString(),
-                        isSelected = false
-                    ),
-                ))
+                INSTANCE.categoryDao().insertAll(
+                    CategoryCard.values().toList().map {
+                        Category(
+                            id = it.id,
+                            categoryName = it.name.lowercase(),
+                            isSelected = false,
+                        )
+                    }
+                )
             }
         }
     }
