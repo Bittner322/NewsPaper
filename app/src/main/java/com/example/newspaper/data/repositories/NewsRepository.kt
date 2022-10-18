@@ -1,6 +1,5 @@
 package com.example.newspaper.data.repositories
 
-import android.util.Log
 import com.example.newspaper.data.database.databases.ArticleDatabase
 import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.data.network.NewsService
@@ -41,6 +40,7 @@ class NewsRepository @Inject constructor(
 
     fun getNewsFlow(): Flow<List<Article>> {
         return articleDatabase.articleDao().getAllArticles()
+            .flowOn(Dispatchers.IO)
     }
 
     suspend fun getFavoriteArticles(): List<Article> {
@@ -78,9 +78,6 @@ class NewsRepository @Inject constructor(
             val categorizedNews = mapCategorizedNews()
             articleDatabase.articleDao().insertAll(categorizedNews)
         }
-            .onFailure {
-              Log.e("asdasd", it.toString())
-            }
     }
 
     private suspend fun mapCategorizedNews(): List<Article> {
@@ -117,7 +114,6 @@ class NewsRepository @Inject constructor(
             articleDatabase.articleDao().getAllHistoricalArticles()
         }
     }
-
 
     suspend fun addItemToHistory(article: Article) {
         withContext(Dispatchers.IO) {

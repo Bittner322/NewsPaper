@@ -18,7 +18,9 @@
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:contentDescription="@string/news_recycler_view_desc"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false"/>
 
     <ProgressBar
         android:id="@+id/newsProgressBar"

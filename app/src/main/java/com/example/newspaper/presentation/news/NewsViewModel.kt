@@ -26,13 +26,13 @@ class NewsViewModel(
     }.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     init {
-        repository.getNewsFlow()
+        searchingArticlesJob = repository.getNewsFlow()
             .onEach { _newsFlow.value = it }
             .launchIn(viewModelScope)
         loadNewsFromNetwork()
     }
 
-    fun loadNewsFromNetwork() {
+    private fun loadNewsFromNetwork() {
         viewModelScope.launch {
             _isNewsLoadingFromNetworkFlow.update { true }
             repository.loadCategorizedNewsIntoDatabase()
@@ -68,6 +68,7 @@ class NewsViewModel(
             repository.loadAllArticlesIntoDatabase(query)
         }
     }
+
 }
 
 class NewsViewModelFactory @Inject constructor(

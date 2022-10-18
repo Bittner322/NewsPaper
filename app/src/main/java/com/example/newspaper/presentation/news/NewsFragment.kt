@@ -108,11 +108,6 @@ class NewsFragment : Fragment() {
         startActivity(toFullArticleActivityIntent)
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        viewModel.loadNewsFromNetwork()
-    }
 
     override fun onDetach() {
 
