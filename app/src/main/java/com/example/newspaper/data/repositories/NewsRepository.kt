@@ -1,9 +1,9 @@
 package com.example.newspaper.data.repositories
 
+import android.util.Log
 import com.example.newspaper.data.database.databases.ArticleDatabase
 import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.data.network.NewsService
-import com.example.newspaper.data.repositories.models.CategoryCard
 import com.example.newspaper.data.repositories.models.CategoryData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.ThreadPoolExecutor.DiscardOldestPolicy
 import javax.inject.Inject
 
 class NewsRepository @Inject constructor(
@@ -79,6 +78,9 @@ class NewsRepository @Inject constructor(
             val categorizedNews = mapCategorizedNews()
             articleDatabase.articleDao().insertAll(categorizedNews)
         }
+            .onFailure {
+              Log.e("asdasd", it.toString())
+            }
     }
 
     private suspend fun mapCategorizedNews(): List<Article> {
@@ -98,9 +100,15 @@ class NewsRepository @Inject constructor(
         return mappedNews
     }
 
-    suspend fun getCategoryCards(): List<CategoryCard> {
+    suspend fun getCategoryCards(): List<CategoryData> {
         return withContext(Dispatchers.IO) {
-            CategoryCard.values().toList()
+            articleDatabase.categoryDao().getCategories().map {
+                CategoryData(
+                    id = it.id,
+                    categoryName = it.categoryName,
+                    isSelected = it.isSelected,
+                )
+            }
         }
     }
 
@@ -110,16 +118,6 @@ class NewsRepository @Inject constructor(
         }
     }
 
-    suspend fun mapCategoryCardsToCategoryData(): List<CategoryData> {
-        return withContext(Dispatchers.IO) {
-            articleDatabase.categoryDao().getCategories().map {
-                CategoryData(
-                    nameResId = it.categoryName,
-                    isSelected = it.isSelected
-                )
-            }
-        }
-    }
 
     suspend fun addItemToHistory(article: Article) {
         withContext(Dispatchers.IO) {
@@ -162,15 +160,15 @@ class NewsRepository @Inject constructor(
             .flowOn(Dispatchers.IO)
     }
 
-    private suspend fun getChosenCategory(categoryName: String): Boolean {
-        return withContext(Dispatchers.IO) {
-            articleDatabase.categoryDao().getChosenCategory(categoryName)
-        }
-    }
-
     suspend fun getCountOfSelectedCategories(): Int {
         return withContext(Dispatchers.IO) {
             articleDatabase.categoryDao().getCountOfSelectedCategories()
+        }
+    }
+
+    suspend fun deleteAllArticlesFromDatabase() {
+        withContext(Dispatchers.IO) {
+            articleDatabase.articleDao().clearArticlesTable()
         }
     }
 }

@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.newspaper.R
-import com.example.newspaper.data.repositories.models.CategoryCard
+import com.example.newspaper.data.repositories.models.CategoryData
 import com.example.newspaper.databinding.FragmentOnboardingNumberThreeBinding
 import com.example.newspaper.di.ComponentStorage
 import com.example.newspaper.di.feature_components.DaggerOnboardingFragmentNumberThreeComponent
@@ -95,11 +95,11 @@ class OnboardingFragmentNumberThree : Fragment() {
         }
     }
 
-    private fun setCategoryIsSelected(categoryCard: CategoryCard) {
+    private fun setCategoryIsSelected(categoryCard: CategoryData) {
         viewModel.setCategoryIsSelected(categoryCard.id)
     }
 
-    private fun setCategoryIsNotSelected(categoryCard: CategoryCard) {
+    private fun setCategoryIsNotSelected(categoryCard: CategoryData) {
         viewModel.setCategoryIsNotSelected(categoryCard.id)
     }
 

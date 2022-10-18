@@ -50,4 +50,7 @@ interface ArticleDao {
     @Query("UPDATE Articles SET isInHistory = 0 WHERE isInHistory = 1")
     fun clearHistory()
 
+    @Query("DELETE FROM Articles")
+    fun clearArticlesTable()
+
 }

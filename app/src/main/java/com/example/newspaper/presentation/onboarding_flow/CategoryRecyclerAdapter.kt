@@ -7,23 +7,23 @@ import android.view.ViewGroup
 import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newspaper.R
-import com.example.newspaper.data.repositories.models.CategoryCard
+import com.example.newspaper.data.repositories.models.CategoryData
 
 class CategoryRecyclerAdapter(
-    private val onToggleChecked: (CategoryCard) -> Unit,
-    private val onToggleNonChecked: (CategoryCard) -> Unit,
+    private val onToggleChecked: (CategoryData) -> Unit,
+    private val onToggleNonChecked: (CategoryData) -> Unit,
 ): RecyclerView.Adapter<CategoryRecyclerAdapter.ViewHolder>() {
 
-    private val data = mutableListOf<CategoryCard>()
+    private val data = mutableListOf<CategoryData>()
 
     class ViewHolder(
         itemView: View,
-        private val onToggleChecked: (CategoryCard) -> Unit,
-        private val onToggleNonChecked: (CategoryCard) -> Unit,
+        private val onToggleChecked: (CategoryData) -> Unit,
+        private val onToggleNonChecked: (CategoryData) -> Unit,
     ): RecyclerView.ViewHolder(itemView) {
 
         private val toggle: ToggleButton = itemView.findViewById(R.id.categoryRecyclerToggle)
-        private var item: CategoryCard? = null
+        private var item: CategoryData? = null
 
         init {
             toggle.setOnCheckedChangeListener { _, isChecked ->
@@ -36,16 +36,16 @@ class CategoryRecyclerAdapter(
             }
         }
 
-        fun setDataItems(item: CategoryCard) {
+        fun setDataItems(item: CategoryData) {
             this.item = item
-            toggle.textOff = itemView.context.resources.getString(item.categoryName)
-            toggle.textOn = itemView.context.resources.getString(item.categoryName)
-            toggle.text = itemView.context.resources.getString(item.categoryName)
+            toggle.textOff = item.categoryName
+            toggle.textOn = item.categoryName
+            toggle.text = item.categoryName
         }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(list: List<CategoryCard>) {
+    fun setData(list: List<CategoryData>) {
         data.clear()
         data.addAll(list)
         notifyDataSetChanged()

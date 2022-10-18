@@ -1,6 +1,7 @@
 package com.example.newspaper.data.repositories.models
 
 data class CategoryData(
-    val nameResId: String,
-    val isSelected: Boolean
+    val id: Int,
+    val isSelected: Boolean,
+    val categoryName: String,
 )

@@ -32,7 +32,7 @@ class NewsViewModel(
         loadNewsFromNetwork()
     }
 
-    private fun loadNewsFromNetwork() {
+    fun loadNewsFromNetwork() {
         viewModelScope.launch {
             _isNewsLoadingFromNetworkFlow.update { true }
             repository.loadCategorizedNewsIntoDatabase()

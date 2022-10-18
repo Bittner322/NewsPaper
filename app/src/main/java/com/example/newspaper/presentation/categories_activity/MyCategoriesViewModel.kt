@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.newspaper.data.repositories.NewsRepository
-import com.example.newspaper.data.repositories.models.CategoryCard
+import com.example.newspaper.data.repositories.models.CategoryData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -14,11 +14,8 @@ class MyCategoriesViewModel(
     private val repository: NewsRepository
 ): ViewModel() {
 
-    private val _categories = MutableStateFlow<List<CategoryCard>>(emptyList())
+    private val _categories = MutableStateFlow<List<CategoryData>>(emptyList())
     val categories = _categories.asStateFlow()
-
-    private val _isCategorySelected = MutableStateFlow(false)
-    val isCategorySelected = _isCategorySelected.asStateFlow()
 
     init {
         viewModelScope.launch {
@@ -36,6 +33,12 @@ class MyCategoriesViewModel(
     fun setCategoryIsNotSelected(id: Int) {
         viewModelScope.launch {
             repository.setCategoryIsNotSelected(id)
+        }
+    }
+
+    fun clearArticlesTable() {
+        viewModelScope.launch {
+            repository.deleteAllArticlesFromDatabase()
         }
     }
 }

@@ -8,7 +8,7 @@ import com.example.newspaper.data.database.dao.ArticleDao
 import com.example.newspaper.data.database.dao.CategoryDao
 import com.example.newspaper.data.database.models.Article
 import com.example.newspaper.data.database.models.Category
-import com.example.newspaper.data.repositories.models.CategoryCard
+import com.example.newspaper.data.repositories.models.CategoryData
 
 @Database(entities = [Article::class, Category::class], version = 14, exportSchema = false)
 abstract class ArticleDatabase: RoomDatabase() {
@@ -21,6 +21,45 @@ abstract class ArticleDatabase: RoomDatabase() {
         lateinit var INSTANCE: ArticleDatabase
             private set
 
+        private val categoriesStartValues = listOf(
+            CategoryData (
+                id = 0,
+                categoryName = "business",
+                isSelected = false,
+            ),
+            CategoryData (
+                id = 1,
+                categoryName = "entertainment",
+                isSelected = false,
+            ),
+            CategoryData (
+                id = 2,
+                categoryName = "general",
+                isSelected = false,
+            ),
+            CategoryData (
+                id = 3,
+                categoryName = "health",
+                isSelected = false,
+            ),
+            CategoryData (
+                id = 4,
+                categoryName = "science",
+                isSelected = false,
+            ),
+            CategoryData (
+                id = 5,
+                categoryName = "sports",
+                isSelected = false,
+            ),
+            CategoryData (
+                id = 6,
+                categoryName = "technology",
+                isSelected = false,
+            ),
+        )
+
+
         fun initDatabase(context: Context) {
            INSTANCE = Room.databaseBuilder(
                 context.applicationContext,
@@ -31,15 +70,16 @@ abstract class ArticleDatabase: RoomDatabase() {
                 .build()
         }
 
+
         suspend fun fillDatabase() {
             val hasCategories = INSTANCE.categoryDao().getCategories().isNotEmpty()
             if (!hasCategories) {
                 INSTANCE.categoryDao().insertAll(
-                    CategoryCard.values().toList().map {
+                    categoriesStartValues.map {
                         Category(
                             id = it.id,
-                            categoryName = it.name.lowercase(),
-                            isSelected = false,
+                            categoryName = it.categoryName,
+                            isSelected = it.isSelected,
                         )
                     }
                 )

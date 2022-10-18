@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.newspaper.data.repositories.models.CategoryCard
+import com.example.newspaper.data.repositories.models.CategoryData
 import com.example.newspaper.databinding.ActivityMyCategoriesBinding
 import com.example.newspaper.di.ComponentStorage
 import com.example.newspaper.di.feature_components.DaggerMyCategoriesActivityComponent
@@ -58,12 +58,14 @@ class MyCategoriesActivity : AppCompatActivity() {
         }
     }
 
-    private fun setCategoryIsSelected(categoryCard: CategoryCard) {
+    private fun setCategoryIsSelected(categoryCard: CategoryData) {
         viewModel.setCategoryIsSelected(categoryCard.id)
+        viewModel.clearArticlesTable()
     }
 
-    private fun setCategoryIsNonSelected(categoryCard: CategoryCard) {
+    private fun setCategoryIsNonSelected(categoryCard: CategoryData) {
         viewModel.setCategoryIsNotSelected(categoryCard.id)
+        viewModel.clearArticlesTable()
     }
 
     override fun onDestroy() {
