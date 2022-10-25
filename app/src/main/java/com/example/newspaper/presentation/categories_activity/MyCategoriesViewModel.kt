@@ -24,21 +24,25 @@ class MyCategoriesViewModel(
         }
     }
 
-    fun setCategoryIsSelected(id: Int) {
+    fun onCategorySelectedClicked(id: Int) {
         viewModelScope.launch {
             repository.setCategoryIsSelected(id)
+            reloadNewsByCategories()
         }
     }
 
-    fun setCategoryIsNotSelected(id: Int) {
+    fun onCategoryUnselectedClicked(id: Int) {
         viewModelScope.launch {
             repository.setCategoryIsNotSelected(id)
+            reloadNewsByCategories()
         }
     }
 
-    fun clearArticlesTable() {
-        viewModelScope.launch {
-            repository.deleteAllArticlesFromDatabase()
+    private suspend fun reloadNewsByCategories() {
+        repository.deleteAllArticlesFromDatabase()
+
+        if(repository.getCountOfSelectedCategories() != 0) {
+            repository.loadCategorizedNewsIntoDatabase()
         }
     }
 }

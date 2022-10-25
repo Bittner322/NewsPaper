@@ -46,7 +46,7 @@ class MyCategoriesActivity : AppCompatActivity() {
 
         val adapter = MyCategoriesRecyclerAdapter(
             onToggleChecked = ::setCategoryIsSelected,
-            onToggleNonChecked = ::setCategoryIsNonSelected
+            onToggleNonChecked = ::setCategoryIsNonSelected,
         )
 
         binding.myCategoriesRecyclerView.adapter = adapter
@@ -59,13 +59,11 @@ class MyCategoriesActivity : AppCompatActivity() {
     }
 
     private fun setCategoryIsSelected(categoryCard: CategoryData) {
-        viewModel.setCategoryIsSelected(categoryCard.id)
-        viewModel.clearArticlesTable()
+        viewModel.onCategorySelectedClicked(categoryCard.id)
     }
 
     private fun setCategoryIsNonSelected(categoryCard: CategoryData) {
-        viewModel.setCategoryIsNotSelected(categoryCard.id)
-        viewModel.clearArticlesTable()
+        viewModel.onCategoryUnselectedClicked(categoryCard.id)
     }
 
     override fun onDestroy() {
